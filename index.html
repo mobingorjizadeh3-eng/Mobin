@@ -92,7 +92,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* دکمه سریع ساخت سایت در هدر */
         .quick-cta-btn {
             background: rgba(0, 240, 255, 0.1);
             border: 1px solid var(--accent-cyan);
@@ -130,14 +129,13 @@
             text-shadow: 0 0 8px var(--accent-cyan);
         }
 
-        /* دکمه ورود به پنل در سمت چپ */
         .panel-btn {
             background: rgba(255, 0, 127, 0.1);
             border: 1px solid var(--accent-pink);
             color: var(--accent-pink);
             padding: 6px 14px;
             border-radius: 10px;
-            font-size: 0.85srem;
+            font-size: 0.85rem;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
@@ -160,7 +158,6 @@
             padding: 80px 0 30px 0;
         }
 
-        /* انیمیشن نرم ظاهر شدن بخش‌ها هنگام اسکرول */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -172,7 +169,6 @@
             transform: translateY(0);
         }
 
-        /* بخش هیرو (معرفی) */
         .hero {
             text-align: center;
             padding-top: 140px;
@@ -215,7 +211,6 @@
             font-size: 1rem;
         }
 
-        /* مهارت‌ها */
         .skills-grid {
             display: flex;
             gap: 12px;
@@ -234,7 +229,6 @@
             display: inline-block;
         }
 
-        /* پروژه‌ها */
         .section-title {
             font-size: 1.8rem;
             margin-bottom: 30px;
@@ -307,7 +301,6 @@
             border: 1px solid rgba(255, 0, 0, 0.4);
         }
 
-        /* خدمات */
         .services-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -334,7 +327,6 @@
             margin-bottom: 12px;
         }
 
-        /* فرم سفارش و مشاوره */
         .order-section {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -393,7 +385,7 @@
             box-shadow: 0 0 25px var(--accent-cyan);
         }
 
-        /* مدال (پنجره پاپ‌آپ) برای دکمه ورود به پنل */
+        /* مدال عمومی */
         .modal {
             display: none;
             position: fixed;
@@ -402,7 +394,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(11, 15, 25, 0.8);
+            background: rgba(11, 15, 25, 0.85);
             backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
@@ -414,7 +406,7 @@
             padding: 30px;
             border-radius: 16px;
             text-align: center;
-            max-width: 380px;
+            max-width: 400px;
             width: 90%;
             box-shadow: 0 0 25px rgba(255, 0, 127, 0.3);
             animation: modalPop 0.3s ease;
@@ -437,17 +429,97 @@
             line-height: 1.6;
         }
 
-        .close-modal {
-            background: var(--accent-cyan);
+        .close-modal-btn {
+            background: var(--text-muted);
             color: #0b0f19;
             border: none;
             padding: 8px 20px;
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
+            margin-top: 10px;
         }
 
-        /* فوتر و شبکه‌های اجتماعی */
+        .test-version-btn {
+            background: rgba(0, 240, 255, 0.15);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+
+        .test-version-btn:hover {
+            background: var(--accent-cyan);
+            color: #0b0f19;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        /* استایل پنل داخلی بعد از لاگین */
+        .dashboard-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: right;
+            margin-top: 15px;
+        }
+
+        .dash-card-square {
+            background: rgba(11, 15, 25, 0.6);
+            border: 1px solid var(--accent-cyan);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            aspect-ratio: 2 / 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+        }
+
+        .dash-card-rect {
+            background: rgba(11, 15, 25, 0.6);
+            border: 1px solid var(--border-color);
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* افکت RGB برای وضعیت پرداخت */
+        @keyframes rgbBorder {
+            0% { border-color: #00ff64; box-shadow: 0 0 10px rgba(0,255,100,0.3); }
+            33% { border-color: #00f0ff; box-shadow: 0 0 10px rgba(0,240,255,0.3); }
+            66% { border-color: #ff007f; box-shadow: 0 0 10px rgba(255,0,127,0.3); }
+            100% { border-color: #00ff64; box-shadow: 0 0 10px rgba(0,255,100,0.3); }
+        }
+
+        .dash-card-rgb {
+            background: rgba(11, 15, 25, 0.7);
+            border: 2px solid #00ff64;
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: rgbBorder 6s infinite;
+        }
+
+        .status-paid {
+            color: #00ff64;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(0,255,100,0.4);
+        }
+
+        /* فوتر */
         footer {
             border-top: 1px solid var(--border-color);
             padding: 30px 0;
@@ -485,7 +557,7 @@
         }
 
         .version-tag {
-            color: #1e3a5f; /* سرمه‌ای کم‌رنگ */
+            color: #1e3a5f;
             font-size: 0.8rem;
             margin-top: 8px;
             font-weight: bold;
@@ -518,16 +590,79 @@
                 <a href="#services">خدمات</a>
                 <a href="#order">ثبت سفارش</a>
             </nav>
-            <button class="panel-btn" onclick="openModal()">ورود به پنل</button>
+            <button class="panel-btn" onclick="openPanelModal()">ورود به پنل</button>
         </div>
     </header>
 
-    <!-- پنجره پاپ‌آپ (مدال) ورود به پنل -->
+    <!-- مدال اصلی (پیام در دست ساخت + دکمه تست نسخه اولیه) -->
     <div id="panelModal" class="modal">
         <div class="modal-content">
             <h3>🔒 بخش در دست ساخت</h3>
             <p>این بخش مخصوص عزیزانی است که از ما سایت خریداری کرده‌اند و از اینجا می‌توانند وضعیت سایت و اطلاعات خود را مدیریت کنند. این قابلیت در به‌روزرسانی‌های بعدی اضافه می‌شود و فعلاً غیرفعال است.</p>
-            <button class="close-modal" onclick="closeModal()">متوجه شدم</button>
+            <br>
+            <button class="test-version-btn" onclick="switchToLoginModal()">ورود و تست نسخه اولیه</button>
+            <br>
+            <button class="close-modal-btn" onclick="closeAllModals()">بستن</button>
+        </div>
+    </div>
+
+    <!-- مدال لاگین و ورود به پنل تستی -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h3>🔐 ورود به پنل کاربری</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 15px;">اطلاعات دیتابیس تستی خود را وارد کنید:</p>
+            
+            <div class="form-group" style="text-align: right;">
+                <label style="font-size: 0.85rem; color: var(--text-muted);">نام کاربری:</label>
+                <input type="text" id="dbUser" class="form-control" placeholder="username..." dir="ltr">
+            </div>
+
+            <div class="form-group" style="text-align: right; margin-bottom: 15px;">
+                <label style="font-size: 0.85rem; color: var(--text-muted);">رمز عبور:</label>
+                <input type="password" id="dbPass" class="form-control" placeholder="password..." dir="ltr">
+            </div>
+
+            <button class="submit-btn" onclick="handleLogin()" style="margin-bottom: 10px; font-size: 0.9rem; padding: 10px;">ورود به پنل</button>
+            
+            <button class="form-control" style="background: rgba(255,255,255,0.05); cursor: pointer; font-size: 0.85rem;" onclick="alert('ورود با گوگل در این نسخه تستی غیرفعال است. از نام کاربری و رمز عبور استفاده کنید.')">
+                <i class="fa-brands fa-google"></i> ورود با گوگل (به زودی)
+            </button>
+
+            <button class="close-modal-btn" onclick="closeAllModals()" style="margin-top: 15px;">بازگشت</button>
+        </div>
+    </div>
+
+    <!-- مدال داشبورد اختصاصی بعد از لاگین موفق -->
+    <div id="dashboardModal" class="modal">
+        <div class="modal-content" style="max-width: 450px;">
+            <h3 style="color: var(--accent-cyan);">⚡ پنل اختصاصی مشتری</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 10px;">خوش آمدید، مبین عزیز! وضعیت پروژه شما:</p>
+
+            <div class="dashboard-container">
+                <!-- کادر مربعی اول: نام دامنه -->
+                <div class="dash-card-square">
+                    <span style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px;">🌐 نام دامنه ثبت شده:</span>
+                    <strong style="font-size: 1.3rem; color: var(--accent-cyan);">mobin.cam</strong>
+                </div>
+
+                <!-- کادر مستطیلی زیرین: هزینه ساخت -->
+                <div class="dash-card-rect">
+                    <span style="font-size: 0.9rem; color: var(--text-muted);">💵 هزینه ساخت سایت:</span>
+                    <strong style="font-size: 1rem;">۱۵,۰۰۰,۰۰۰ تومان</strong>
+                </div>
+
+                <!-- کادر زیرین با افکت RGB: وضعیت پرداخت -->
+                <div class="dash-card-rgb">
+                    <span style="font-size: 0.9rem; color: var(--text-muted);">📊 وضعیت پرداخت:</span>
+                    <span class="status-paid">پرداخت شده (تایید شده)</span>
+                </div>
+            </div>
+
+            <p style="margin-top: 20px; font-weight: bold; font-size: 1rem; color: var(--text-main);">
+                بقیه قابلیت‌ها به‌زودی... 🚀
+            </p>
+
+            <button class="close-modal-btn" onclick="closeAllModals()" style="background: var(--accent-pink); color: #fff; width: 100%; margin-top: 15px;">خروج از پنل</button>
         </div>
     </div>
 
@@ -536,10 +671,10 @@
         <!-- بخش معرفی (Hero) -->
         <section class="hero reveal" id="about">
             <h1>سلام، من <span>مبین گرجی‌زاده</span> هستم 🚀</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem;">توسعه‌دهنده وب و عاشق خلق کدهای خاص</p>
+            <p style="color: var(--text-muted); font-size: 1.1rem;">توسعه‌دهنده وب و عاشق خلق کدهای خفن</p>
 
             <div class="bio-box">
-                <p>⚡ من نوجوانی <strong></strong>  هستم که دنیای اصلیم در لابه‌لای کدها، سرورها و بازی‌های رقابتی می‌گذره. شغل اصلی من برنامه‌نویسیه و بخش بزرگی از وقتم رو روی ساخت ابزارهای تحت وب و دنیای گیمینگ متمرکز کردم.</p>
+                <p>⚡ من نوجوانی <strong>۲۷</strong> ساله هستم که دنیای اصلیم در لابه‌لای کدها، سرورها و بازی‌های رقابتی می‌گذره. شغل اصلی من برنامه‌نویسیه و بخش بزرگی از وقتم رو روی ساخت ابزارهای تحت وب و دنیای گیمینگ متمرکز کردم.</p>
                 <p>💻 عاشق ساخت سایت، چالش‌های فنی و توسعه سیستم‌های خودکارم. به زبان‌های مختلف برنامه‌نویسی تسلط دارم و با کدهای قدرتمندی مثل <strong>Python</strong> و <strong>C++</strong> چرخ پروژه‌هام رو می‌چرخونم.</p>
                 
                 <div class="skills-grid">
@@ -664,15 +799,12 @@
     <footer>
         <div class="container">
             <div class="social-icons">
-                <!-- تلگرام -->
                 <a href="https://t.me/Mobin_Gorjizadeh2" target="_blank" title="Telegram">
                     <i class="fa-brands fa-telegram"></i>
                 </a>
-                <!-- اینستاگرام -->
                 <a href="https://www.instagram.com/mobin_gorjizadeh?mdxt=MThncTl2MDhodmZqag%3D%3D&utm_source=qr" target="_blank" title="Instagram">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
-                <!-- ایمیل -->
                 <a href="mailto:mobin.gorjizadh.gmail.com" title="Email">
                     <i class="fa-solid fa-envelope"></i>
                 </a>
@@ -684,9 +816,9 @@
         </div>
     </footer>
 
-    <!-- اسکریپت‌های تعاملی سایت -->
+    <!-- اسکریپت‌ها -->
     <script>
-        // اسکریپت ارسال اطلاعات فرم به تلگرام
+        // ارسال اطلاعات فرم به تلگرام
         function sendToTelegram() {
             const name = document.getElementById('fullName').value;
             const phone = document.getElementById('phone').value;
@@ -711,23 +843,44 @@
             window.open(telegramUrl, '_blank');
         }
 
-        // اسکریپت پاپ‌آپ ورود به پنل
-        function openModal() {
+        // مدیریت مدال‌ها
+        function openPanelModal() {
             document.getElementById('panelModal').style.display = 'flex';
         }
-        function closeModal() {
+
+        function switchToLoginModal() {
             document.getElementById('panelModal').style.display = 'none';
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        function closeAllModals() {
+            document.getElementById('panelModal').style.display = 'none';
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('dashboardModal').style.display = 'none';
+        }
+
+        // اعتبارسنجی دیتابیس تستی
+        function handleLogin() {
+            const u = document.getElementById('dbUser').value.trim();
+            const p = document.getElementById('dbPass').value.trim();
+
+            // اطلاعات دیتابیس شما
+            if (u === 'mobin.gorjizadeh' && p === 'mobin1130') {
+                document.getElementById('loginModal').style.display = 'none';
+                document.getElementById('dashboardModal').style.display = 'flex';
+            } else {
+                alert('نام کاربری یا رمز عبور اشتباه است! (یوزر صحیح: mobin.gorjizadeh / پسورد: mobin1130)');
+            }
         }
 
         // بستن مدال با کلیک بیرون از آن
         window.onclick = function(event) {
-            let modal = document.getElementById('panelModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
+            if (event.target.classList.contains('modal')) {
+                closeAllModals();
             }
         }
 
-        // اسکریپت انیمیشن ظاهر شدن بخش‌ها هنگام اسکرول (Reveal on Scroll)
+        // انیمیشن اسکرول
         window.addEventListener('scroll', revealSections);
         function revealSections() {
             let reveals = document.querySelectorAll('.reveal');
@@ -740,7 +893,6 @@
                 }
             }
         }
-        // اجرای اولیه برای بخش‌های بالای صفحه
         revealSections();
     </script>
 </body>
