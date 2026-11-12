@@ -51,7 +51,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 8%;
+            padding: 15px 5%;
             background: rgba(11, 15, 25, 0.85);
             backdrop-filter: blur(10px);
             position: fixed;
@@ -62,15 +62,22 @@
             z-index: 1000;
         }
 
+        .header-right, .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            text-decoration: none;
         }
 
         .logo-area img {
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             border: 2px solid var(--accent-cyan);
             object-fit: cover;
@@ -79,17 +86,41 @@
 
         .logo-area span {
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 1rem;
             background: linear-gradient(45deg, var(--accent-cyan), var(--accent-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
+        /* دکمه سریع ساخت سایت در هدر */
+        .quick-cta-btn {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .quick-cta-btn:hover {
+            background: var(--accent-cyan);
+            color: #0b0f19;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
         nav a {
             color: var(--text-muted);
             text-decoration: none;
-            margin-left: 20px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
             transition: 0.3s;
         }
@@ -99,21 +130,52 @@
             text-shadow: 0 0 8px var(--accent-cyan);
         }
 
+        /* دکمه ورود به پنل در سمت چپ */
+        .panel-btn {
+            background: rgba(255, 0, 127, 0.1);
+            border: 1px solid var(--accent-pink);
+            color: var(--accent-pink);
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-size: 0.85srem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .panel-btn:hover {
+            background: var(--accent-pink);
+            color: #fff;
+            box-shadow: 0 0 12px var(--accent-pink);
+        }
+
         .container {
             max-width: 1050px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* کاهش فاصله بخش‌ها برای اسکرول راحت‌تر */
         section {
             padding: 80px 0 30px 0;
+        }
+
+        /* انیمیشن نرم ظاهر شدن بخش‌ها هنگام اسکرول */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* بخش هیرو (معرفی) */
         .hero {
             text-align: center;
-            padding-top: 130px;
+            padding-top: 140px;
         }
 
         .hero h1 {
@@ -168,7 +230,7 @@
             border-radius: 8px;
             font-size: 0.85rem;
             border: 1px solid rgba(0, 240, 255, 0.3);
-            direction: ltr; /* حل مشکل نمایش C++ */
+            direction: ltr;
             display: inline-block;
         }
 
@@ -206,7 +268,7 @@
         }
 
         .project-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-5px);
             border-color: var(--accent-cyan);
             box-shadow: 0 10px 25px rgba(0, 240, 255, 0.15);
         }
@@ -259,6 +321,11 @@
             border-radius: 12px;
             text-align: center;
             transition: 0.3s;
+        }
+
+        .service-item:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-cyan);
         }
 
         .service-item i {
@@ -326,6 +393,60 @@
             box-shadow: 0 0 25px var(--accent-cyan);
         }
 
+        /* مدال (پنجره پاپ‌آپ) برای دکمه ورود به پنل */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--accent-pink);
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 380px;
+            width: 90%;
+            box-shadow: 0 0 25px rgba(255, 0, 127, 0.3);
+            animation: modalPop 0.3s ease;
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-content h3 {
+            color: var(--accent-pink);
+            margin-bottom: 10px;
+        }
+
+        .modal-content p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .close-modal {
+            background: var(--accent-cyan);
+            color: #0b0f19;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
         /* فوتر و شبکه‌های اجتماعی */
         footer {
             border-top: 1px solid var(--border-color);
@@ -363,9 +484,18 @@
             transform: translateY(-3px);
         }
 
+        .version-tag {
+            color: #1e3a5f; /* سرمه‌ای کم‌رنگ */
+            font-size: 0.8rem;
+            margin-top: 8px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
         @media(max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             nav { display: none; }
+            .quick-cta-btn { display: none; }
         }
     </style>
 </head>
@@ -373,27 +503,43 @@
 
     <!-- هدر سایت -->
     <header>
-        <div class="logo-area">
-            <img src="https://i.ibb.co/HLnXsMC4/42-AD0339-0-BE1-4820-82-D3-8-ADA29278-CCD.png" alt="Mobin Logo">
-            <span>Mobin Gorjizadeh</span>
+        <div class="header-right">
+            <a href="#" class="logo-area">
+                <img src="https://i.ibb.co/HLnXsMC4/42-AD0339-0-BE1-4820-82-D3-8-ADA29278-CCD.png" alt="Mobin Logo">
+                <span>Mobin Gorjizadeh</span>
+            </a>
+            <a href="#order" class="quick-cta-btn">⚡ سایت اختصاصی خودت رو بساز</a>
         </div>
-        <nav>
-            <a href="#about">درباره من</a>
-            <a href="#projects">پروژه‌ها</a>
-            <a href="#services">خدمات</a>
-            <a href="#order">ثبت سفارش</a>
-        </nav>
+
+        <div class="header-left">
+            <nav>
+                <a href="#about">درباره من</a>
+                <a href="#projects">پروژه‌ها</a>
+                <a href="#services">خدمات</a>
+                <a href="#order">ثبت سفارش</a>
+            </nav>
+            <button class="panel-btn" onclick="openModal()">ورود به پنل</button>
+        </div>
     </header>
+
+    <!-- پنجره پاپ‌آپ (مدال) ورود به پنل -->
+    <div id="panelModal" class="modal">
+        <div class="modal-content">
+            <h3>🔒 بخش در دست ساخت</h3>
+            <p>این بخش مخصوص عزیزانی است که از ما سایت خریداری کرده‌اند و از اینجا می‌توانند وضعیت سایت و اطلاعات خود را مدیریت کنند. این قابلیت در به‌روزرسانی‌های بعدی اضافه می‌شود و فعلاً غیرفعال است.</p>
+            <button class="close-modal" onclick="closeModal()">متوجه شدم</button>
+        </div>
+    </div>
 
     <div class="container">
 
         <!-- بخش معرفی (Hero) -->
-        <section class="hero" id="about">
+        <section class="hero reveal" id="about">
             <h1>سلام، من <span>مبین گرجی‌زاده</span> هستم 🚀</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem;">توسعه‌دهنده وب و عاشق خلق کدهای خاص</p>
+            <p style="color: var(--text-muted); font-size: 1.1rem;">توسعه‌دهنده وب و عاشق خلق کدهای خفن</p>
 
             <div class="bio-box">
-                <p>⚡ من نوجوانی <strong></strong>  هستم که دنیای اصلیم در لابه‌لای کدها، سرورها و بازی‌های رقابتی می‌گذره. شغل اصلی من برنامه‌نویسیه و بخش بزرگی از وقتم رو روی ساخت ابزارهای تحت وب و دنیای گیمینگ متمرکز کردم.</p>
+                <p>⚡ من نوجوانی <strong>۲۷</strong> ساله هستم که دنیای اصلیم در لابه‌لای کدها، سرورها و بازی‌های رقابتی می‌گذره. شغل اصلی من برنامه‌نویسیه و بخش بزرگی از وقتم رو روی ساخت ابزارهای تحت وب و دنیای گیمینگ متمرکز کردم.</p>
                 <p>💻 عاشق ساخت سایت، چالش‌های فنی و توسعه سیستم‌های خودکارم. به زبان‌های مختلف برنامه‌نویسی تسلط دارم و با کدهای قدرتمندی مثل <strong>Python</strong> و <strong>C++</strong> چرخ پروژه‌هام رو می‌چرخونم.</p>
                 
                 <div class="skills-grid">
@@ -407,7 +553,7 @@
         </section>
 
         <!-- بخش پروژه‌ها -->
-        <section id="projects">
+        <section id="projects" class="reveal">
             <h2 class="section-title">پروژه‌های من</h2>
             <div class="projects-grid">
                 
@@ -447,7 +593,7 @@
         </section>
 
         <!-- بخش خدمات -->
-        <section id="services">
+        <section id="services" class="reveal">
             <h2 class="section-title">خدمات تخصصی</h2>
             <div class="services-list">
                 <div class="service-item">
@@ -469,7 +615,7 @@
         </section>
 
         <!-- بخش ثبت سفارش و مشاوره -->
-        <section id="order">
+        <section id="order" class="reveal">
             <h2 class="section-title">درخواست مشاوره و ثبت سفارش</h2>
             <div class="order-section">
                 <form id="consultForm">
@@ -534,11 +680,13 @@
             <p style="color: var(--text-muted); font-size: 0.85rem;">
                 تمامی حقوق محفوظ است | توسعه داده شده با ❤️ توسط مبین گرجی‌زاده
             </p>
+            <div class="version-tag">V 0.4</div>
         </div>
     </footer>
 
-    <!-- اسکریپت اتصال اطلاعات فرم به تلگرام -->
+    <!-- اسکریپت‌های تعاملی سایت -->
     <script>
+        // اسکریپت ارسال اطلاعات فرم به تلگرام
         function sendToTelegram() {
             const name = document.getElementById('fullName').value;
             const phone = document.getElementById('phone').value;
@@ -562,6 +710,38 @@
             const telegramUrl = `https://t.me/Mobin_Gorjizadeh2?text=${message}`;
             window.open(telegramUrl, '_blank');
         }
+
+        // اسکریپت پاپ‌آپ ورود به پنل
+        function openModal() {
+            document.getElementById('panelModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('panelModal').style.display = 'none';
+        }
+
+        // بستن مدال با کلیک بیرون از آن
+        window.onclick = function(event) {
+            let modal = document.getElementById('panelModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // اسکریپت انیمیشن ظاهر شدن بخش‌ها هنگام اسکرول (Reveal on Scroll)
+        window.addEventListener('scroll', revealSections);
+        function revealSections() {
+            let reveals = document.querySelectorAll('.reveal');
+            for (let i = 0; i < reveals.length; i++) {
+                let windowHeight = window.innerHeight;
+                let elementTop = reveals[i].getBoundingClientRect().top;
+                let elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        // اجرای اولیه برای بخش‌های بالای صفحه
+        revealSections();
     </script>
 </body>
 </html>
