@@ -1,2 +1,0 @@
-# Mobin
-mobin.cam
