@@ -201,7 +201,7 @@
             background: var(--card-bg);
             border: 1px solid var(--accent-cyan);
             border-radius: 12px;
-            min-width: 195px;
+            min-width: 205px;
             padding: 8px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 240, 255, 0.2);
             z-index: 1500;
@@ -243,8 +243,9 @@
             padding: 0 20px;
         }
 
+        /* کاهش فاصله عمودی بین بخش‌ها برای پویایی بیشتر */
         section {
-            padding: 80px 0 30px 0;
+            padding: 55px 0 20px 0;
         }
 
         .reveal {
@@ -260,12 +261,12 @@
 
         .hero {
             text-align: center;
-            padding-top: 140px;
+            padding-top: 125px;
         }
 
         .hero h1 {
             font-size: 2.5rem;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .hero h1 span {
@@ -276,9 +277,9 @@
         .bio-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 25px;
+            padding: 22px;
             border-radius: 16px;
-            margin-top: 25px;
+            margin-top: 20px;
             text-align: right;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             position: relative;
@@ -302,21 +303,21 @@
         }
 
         .bio-box p {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             font-size: 1rem;
         }
 
         .skills-grid {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
-            margin-top: 15px;
+            margin-top: 12px;
         }
 
         .skill-tag {
             background: rgba(0, 240, 255, 0.1);
             color: var(--accent-cyan);
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 8px;
             font-size: 0.85rem;
             border: 1px solid rgba(0, 240, 255, 0.3);
@@ -333,8 +334,8 @@
         }
 
         .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
+            font-size: 1.7rem;
+            margin-bottom: 25px;
             text-align: center;
             position: relative;
         }
@@ -342,10 +343,10 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 50px;
+            width: 45px;
             height: 3px;
             background: var(--accent-pink);
-            margin: 8px auto 0 auto;
+            margin: 6px auto 0 auto;
             border-radius: 2px;
             box-shadow: 0 0 15px var(--accent-pink);
         }
@@ -443,25 +444,25 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 20px;
-            padding: 30px;
+            padding: 25px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.4);
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             color: var(--text-muted);
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .form-control {
             width: 100%;
-            padding: 10px 15px;
+            padding: 9px 14px;
             background: rgba(11, 15, 25, 0.6);
             border: 1px solid var(--border-color);
             border-radius: 10px;
@@ -740,7 +741,7 @@
         footer {
             border-top: 1px solid var(--border-color);
             padding: 30px 0;
-            margin-top: 50px;
+            margin-top: 40px;
             text-align: center;
         }
 
@@ -784,7 +785,7 @@
         @media(max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             nav { display: none; }
-            .quick-cta-btn { display: none; }
+            .quick-cta-btn { display: none; } /* پنهان شدن دکمه دسکتاپ و منتقل شدن به منوی همبرگری برای موبایل */
             .header-left { gap: 8px; }
             .panel-btn { padding: 6px 10px; font-size: 0.8rem; }
         }
@@ -824,6 +825,9 @@
                 </button>
                 <div class="hamburger-dropdown" id="hamburgerMenu">
                     <a href="#order" onclick="closeHamburgerMenu()">
+                        <i class="fa-solid fa-bolt" style="color: var(--accent-cyan);"></i> ساخت سایت اختصاصی
+                    </a>
+                    <a href="#order" onclick="closeHamburgerMenu()">
                         <i class="fa-solid fa-headset" style="color: var(--accent-cyan);"></i> مشاوره رایگان
                     </a>
                     <button onclick="openFaqModal(); closeHamburgerMenu();">
@@ -850,7 +854,7 @@
     <div id="panelModal" class="modal">
         <div class="modal-content">
             <h3>🔒 بخش در دست ساخت</h3>
-            <p>این بخش مخصوص عزیزانی است که از ما سایت خریداری کرده‌اند و از اینجا می‌توانند وضعیت سایت و اطلاعات خود را مدیریت کنند. این قابلیت در به‌روزرسانی‌های بعدی اضافه می‌شود و فعلاً برای عموم غیرفعال است.</p>
+            <p>این بخش مخصوص عزیزانی است که از ما سایت خریداری کرده‌اند و از اینجا می‌توانند وضعیت سایت و اطلاعات خود را مدیریت کنند. این قابلیت در به‌روزرسانی‌های بعدی اضافه می‌شود و فعلاً غیرفعال است.</p>
             <br>
             <button class="test-version-btn" onclick="switchToLoginModal()">ورود و تست نسخه اولیه</button>
             <br>
@@ -970,7 +974,7 @@
                         </div>
                     </div>
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px;">
-                        سرویس فیلتر شکن و اتصال پایدار به شبکه بین‌الملل؛ طراحی مینی‌اپلیکیشن و مدیریت حرفه‌ای سرورها.
+                        سرویس پروکسی و اتصال پایدار؛ طراحی مینی‌اپلیکیشن و مدیریت حرفه‌ای سرورها.
                     </p>
                     <a href="https://t.me/mobin1vpn" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-size: 0.85rem; font-weight: bold;">
                         <i class="fa-brands fa-telegram"></i> کانال تلگرام پروژه &larr;
@@ -986,7 +990,7 @@
                         </div>
                     </div>
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px;">
-                        پروژه فروش گیفت‌های تلگرام (پروژه خاموش است).
+                        پروژه فروش گیفت‌های تلگرام (به‌زودی با سرویس کامل فعال می‌شود).
                     </p>
                     <span style="color: var(--text-muted); font-size: 0.8rem; font-style: italic;">آپلود لوگو به‌زودی...</span>
                 </div>
@@ -1072,6 +1076,7 @@
                 <a href="https://www.instagram.com/mobin_gorjizadeh?mdxt=MThncTl2MDhodmZqag%3D%3D&utm_source=qr" target="_blank" title="Instagram">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
+                <!-- اصلاح آدرس ایمیل -->
                 <a href="mailto:mobin.gorjizadh@gmail.com" title="Email">
                     <i class="fa-solid fa-envelope"></i>
                 </a>
@@ -1193,18 +1198,15 @@
             document.getElementById('faqModal').style.display = 'none';
         }
 
-        // احراز هویت متصل به فایل db.js با پشتیبان داخلی (Fallback)
         function handleLogin() {
             const u = document.getElementById('dbUser').value.trim();
             const p = document.getElementById('dbPass').value.trim();
 
-            // دیتابیس پشتیبان (تضمین کارکرد حتی در صورت تاخیر آپدیت db.js روی گیت‌هاب)
             const fallbackDatabase = {
                 "mobin.gorjizadeh": { name: "مبین", pass: "mobin1130", domain: "mobin.cam", url: "https://mobin.cam", price: "۱۵,۰۰۰,۰۰۰ تومان", status: "پرداخت شده (تایید شده)", statusColor: "#00ff64", progress: 100 },
                 "am.gorji": { name: "امین", pass: "amin4275", domain: "ثبت نشده (❌)", url: "#", price: "توافقی / در انتظار تعیین", status: "پرداخت نشده", statusColor: "#ff4d4d", progress: 1 }
             };
 
-            // استفاده از دیتابیس خارجی یا پشتیبان
             const activeDB = (typeof clientDatabase !== 'undefined') ? clientDatabase : fallbackDatabase;
 
             if (activeDB[u] && activeDB[u].pass === p) {
