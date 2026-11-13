@@ -8,18 +8,16 @@ const clientDatabase = {
         price: "۱۵,۰۰۰,۰۰۰ تومان",
         status: "پرداخت شده (تایید شده)",
         statusColor: "#00ff64",
-        progress: 100 // مقدار پیشرفت پروژه از 1 تا 100
+        progress: 100
+    },
+    "am.gorji": {
+        name: "امین",
+        pass: "amin4275",
+        domain: "ثبت نشده (❌)",
+        url: "#",
+        price: "توافقی / در انتظار تعیین",
+        status: "پرداخت نشده",
+        statusColor: "#ff4d4d", // رنگ قرمز برای وضعیت پرداخت نشده
+        progress: 1 // درصد پیشرفت پروژه
     }
-    // برای اضافه کردن مشتریان بعدی می‌تونید به این شکل ادامه بدید:
-    // ,
-    // "customer_username": {
-    //     name: "نام مشتری",
-    //     pass: "password123",
-    //     domain: "clientdomain.ir",
-    //     url: "https://clientdomain.ir",
-    //     price: "۱۰,۰۰۰,۰۰۰ تومان",
-    //     status: "در حال توسعه",
-    //     statusColor: "#00f0ff",
-    //     progress: 50
-    // }
 };
