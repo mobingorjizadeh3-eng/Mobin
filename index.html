@@ -34,7 +34,6 @@
             line-height: 1.7;
         }
 
-        /* افکت پس‌زمینه نئونی متحرک */
         @keyframes bgGlow {
             0% { transform: scale(1); opacity: 0.03; }
             50% { transform: scale(1.15); opacity: 0.06; }
@@ -166,7 +165,6 @@
             transform: scale(1.05);
         }
 
-        /* دکمه و منوی همبرگری (دسکتاپ و موبایل) */
         .hamburger-wrapper {
             position: relative;
             display: flex;
@@ -203,7 +201,7 @@
             background: var(--card-bg);
             border: 1px solid var(--accent-cyan);
             border-radius: 12px;
-            min-width: 185px;
+            min-width: 195px;
             padding: 8px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 240, 255, 0.2);
             z-index: 1500;
@@ -216,19 +214,25 @@
             display: flex;
         }
 
-        .hamburger-dropdown a {
+        .hamburger-dropdown a, .hamburger-dropdown button {
             color: var(--text-main);
             text-decoration: none;
+            background: none;
+            border: none;
+            text-align: right;
+            width: 100%;
             padding: 10px 14px;
             border-radius: 8px;
             font-size: 0.9rem;
             display: flex;
             align-items: center;
             gap: 10px;
+            cursor: pointer;
             transition: 0.25s;
+            font-family: 'Vazirmatn', sans-serif;
         }
 
-        .hamburger-dropdown a:hover {
+        .hamburger-dropdown a:hover, .hamburger-dropdown button:hover {
             background: rgba(0, 240, 255, 0.15);
             color: var(--accent-cyan);
         }
@@ -493,12 +497,10 @@
             box-shadow: 0 0 25px var(--accent-cyan);
         }
 
-        /* فیلد مخفی ضد بات (Honeypot) */
         .bot-field {
             display: none !important;
         }
 
-        /* صفحه مسدودسازی رفلرش مداوم */
         #blockScreen {
             display: none;
             position: fixed;
@@ -527,7 +529,6 @@
             color: #333;
         }
 
-        /* مدال عمومی */
         .modal {
             display: none;
             position: fixed;
@@ -668,7 +669,6 @@
             text-shadow: 0 0 8px rgba(0,255,100,0.4);
         }
 
-        /* دکمه مشاهده سایت در پنل */
         .view-site-btn {
             display: flex;
             justify-content: center;
@@ -693,7 +693,6 @@
             transform: translateY(-2px);
         }
 
-        /* کادر دایره‌ای شکل تغییر بخشی از سایت */
         .circle-edit-wrapper {
             display: flex;
             justify-content: center;
@@ -791,10 +790,11 @@
             .panel-btn { padding: 6px 10px; font-size: 0.8rem; }
         }
     </style>
+    <!-- اتصال به فایل دیتابیس خارجی -->
+    <script src="db.js"></script>
 </head>
 <body>
 
-    <!-- صفحه سفید مسدودسازی به دلیل رفلرش زیاد -->
     <div id="blockScreen">
         <h1>⚠️ دسترسی موقت مسدود شد</h1>
         <p>شما به دلیل رفلرش زیاد تا <span id="countdown">30</span> ثانیه بلاک شدید.</p>
@@ -819,7 +819,6 @@
             </nav>
             <button class="panel-btn" onclick="openPanelModal()">ورود به پنل</button>
             
-            <!-- منوی همبرگری کنار دکمه ورود به پنل -->
             <div class="hamburger-wrapper">
                 <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleHamburgerMenu()" title="منو">
                     <i class="fa-solid fa-bars"></i>
@@ -828,6 +827,9 @@
                     <a href="#order" onclick="closeHamburgerMenu()">
                         <i class="fa-solid fa-headset" style="color: var(--accent-cyan);"></i> مشاوره رایگان
                     </a>
+                    <button onclick="openFaqModal(); closeHamburgerMenu();">
+                        <i class="fa-solid fa-circle-question" style="color: var(--accent-cyan);"></i> سوالات متداول
+                    </button>
                     <a href="#contact-footer" onclick="closeHamburgerMenu()">
                         <i class="fa-solid fa-paper-plane" style="color: var(--accent-pink);"></i> ارتباط با ما
                     </a>
@@ -835,6 +837,15 @@
             </div>
         </div>
     </header>
+
+    <!-- مدال سوالات متداول -->
+    <div id="faqModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color: var(--accent-cyan);">❓ سوالات متداول</h3>
+            <p>بخش سوالات متداول به‌زودی اضافه می‌شود. اگر در حال حاضر سوالی دارید، لطفاً از طریق ارتباط با پشتیبانی تلگرام با ما در ارتباط باشید.</p>
+            <button class="close-modal-btn" onclick="closeAllModals()">متوجه شدم</button>
+        </div>
+    </div>
 
     <!-- مدال عمومی (پیام در دست ساخت) -->
     <div id="panelModal" class="modal">
@@ -878,30 +889,39 @@
     <div id="dashboardModal" class="modal">
         <div class="modal-content" style="max-width: 450px;">
             <h3 style="color: var(--accent-cyan);">⚡ پنل اختصاصی مشتری</h3>
-            <p style="font-size: 0.85rem; margin-bottom: 10px;">خوش آمدید، مبین عزیز! وضعیت پروژه شما:</p>
+            <p id="welcomeUserText" style="font-size: 0.85rem; margin-bottom: 10px;">خوش آمدید، کاربر عزیز!</p>
 
             <div class="dashboard-container">
                 <div class="dash-card-square">
                     <span style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px;">🌐 نام دامنه ثبت شده:</span>
-                    <strong id="userDomainText" style="font-size: 1.3rem; color: var(--accent-cyan);">mobin.cam</strong>
+                    <strong id="userDomainText" style="font-size: 1.3rem; color: var(--accent-cyan);">---</strong>
                 </div>
 
                 <div class="dash-card-rect">
                     <span style="font-size: 0.9rem; color: var(--text-muted);">💵 هزینه ساخت سایت:</span>
-                    <strong id="userPriceText" style="font-size: 1rem;">۱۵,۰۰۰,۰۰۰ تومان</strong>
+                    <strong id="userPriceText" style="font-size: 1rem;">---</strong>
                 </div>
 
                 <div class="dash-card-rgb">
                     <span style="font-size: 0.9rem; color: var(--text-muted);">📊 وضعیت پرداخت:</span>
-                    <span id="userStatusText" class="status-paid">پرداخت شده (تایید شده)</span>
+                    <span id="userStatusText" class="status-paid">---</span>
                 </div>
 
-                <!-- دکمه مشاهده سایت -->
-                <a id="userSiteLink" href="https://mobin.cam" target="_blank" class="view-site-btn">
+                <!-- نوار پیشرفت پروژه (۱ تا ۱۰۰) -->
+                <div class="dash-card-rect" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+                    <div style="display: flex; justify-content: space-between; width: 100%;">
+                        <span style="font-size: 0.9rem; color: var(--text-muted);">📈 پیشرفت پروژه:</span>
+                        <strong id="progressPercentText" style="color: var(--accent-cyan);">0%</strong>
+                    </div>
+                    <div style="width: 100%; background: rgba(255,255,255,0.05); height: 10px; border-radius: 5px; overflow: hidden; border: 1px solid var(--border-color);">
+                        <div id="progressBarFill" style="width: 0%; height: 100%; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-pink)); transition: width 0.8s ease;"></div>
+                    </div>
+                </div>
+
+                <a id="userSiteLink" href="#" target="_blank" class="view-site-btn">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i> مشاهده سایت
                 </a>
 
-                <!-- کادر دایره‌ای شکل تغییر بخشی از سایت -->
                 <div class="circle-edit-wrapper">
                     <a href="https://t.me/Mobin_Gorjizadeh2" target="_blank" class="circle-edit-btn">
                         <i class="fa-brands fa-telegram"></i>
@@ -920,7 +940,6 @@
 
     <div class="container">
 
-        <!-- بخش معرفی (Hero) -->
         <section class="hero reveal" id="about">
             <h1>سلام، من <span>مبین گرجی‌زاده</span> هستم 🚀</h1>
             <p style="color: var(--text-muted); font-size: 1.1rem;">توسعه‌دهنده وب و عاشق خلق کدهای خفن</p>
@@ -939,7 +958,6 @@
             </div>
         </section>
 
-        <!-- بخش پروژه‌ها -->
         <section id="projects" class="reveal">
             <h2 class="section-title">پروژه‌های من</h2>
             <div class="projects-grid">
@@ -977,7 +995,6 @@
             </div>
         </section>
 
-        <!-- بخش خدمات -->
         <section id="services" class="reveal">
             <h2 class="section-title">خدمات تخصصی</h2>
             <div class="services-list">
@@ -999,12 +1016,10 @@
             </div>
         </section>
 
-        <!-- بخش ثبت سفارش و مشاوره -->
         <section id="order" class="reveal">
             <h2 class="section-title">درخواست مشاوره و ثبت سفارش</h2>
             <div class="order-section">
                 <form id="consultForm">
-                    <!-- فیلد مخفی ضد بات (Honeypot) -->
                     <input type="text" id="website_trap" class="bot-field" tabindex="-1" autocomplete="off">
 
                     <div class="form-group">
@@ -1065,18 +1080,16 @@
             <p style="color: var(--text-muted); font-size: 0.85rem;">
                 تمامی حقوق محفوظ است | توسعه داده شده با ❤️ توسط مبین گرجی‌زاده
             </p>
-            <div class="version-tag">V 0.5 &nbsp;&copy; Mobin Gorjizadeh</div>
+            <div class="version-tag">V 0.6 &nbsp;&copy; Mobin Gorjizadeh</div>
         </div>
     </footer>
 
-    <!-- اسکریپت‌های امنیتی و منطق سایت -->
+    <!-- اسکریپت‌ها -->
     <script>
-        // ۱. سیستم ضد هک قاب (Clickjacking Protection)
         if (window.self !== window.top) {
             window.top.location = window.self.location;
         }
 
-        // ۲. سیستم ضد رفلرش مداوم (Rate Limiting)
         (function() {
             const now = Date.now();
             let refreshData = JSON.parse(localStorage.getItem('mobin_refresh_guard')) || { count: 0, time: now, blockedUntil: 0 };
@@ -1120,7 +1133,6 @@
             });
         }
 
-        // کنترل منوی همبرگری
         function toggleHamburgerMenu() {
             const menu = document.getElementById('hamburgerMenu');
             menu.classList.toggle('show');
@@ -1131,7 +1143,6 @@
             menu.classList.remove('show');
         }
 
-        // ۳. ارسال فرم به تلگرام به همراه سیستم ضد بات (Honeypot)
         function sendToTelegram() {
             const trap = document.getElementById('website_trap').value;
             if (trap !== "") {
@@ -1167,6 +1178,10 @@
             document.getElementById('panelModal').style.display = 'flex';
         }
 
+        function openFaqModal() {
+            document.getElementById('faqModal').style.display = 'flex';
+        }
+
         function switchToLoginModal() {
             document.getElementById('panelModal').style.display = 'none';
             document.getElementById('loginModal').style.display = 'flex';
@@ -1176,26 +1191,19 @@
             document.getElementById('panelModal').style.display = 'none';
             document.getElementById('loginModal').style.display = 'none';
             document.getElementById('dashboardModal').style.display = 'none';
+            document.getElementById('faqModal').style.display = 'none';
         }
 
-        // دیتابیس تستی کاربران
-        const testDatabase = {
-            "mobin.gorjizadeh": {
-                pass: "mobin1130",
-                domain: "mobin.cam",
-                url: "https://mobin.cam",
-                price: "۱۵,۰۰۰,۰۰۰ تومان",
-                status: "پرداخت شده (تایید شده)",
-                statusColor: "#00ff64"
-            }
-        };
-
+        // احراز هویت متصل به فایل db.js
         function handleLogin() {
             const u = document.getElementById('dbUser').value.trim();
             const p = document.getElementById('dbPass').value.trim();
 
-            if (testDatabase[u] && testDatabase[u].pass === p) {
-                const userData = testDatabase[u];
+            if (typeof clientDatabase !== 'undefined' && clientDatabase[u] && clientDatabase[u].pass === p) {
+                const userData = clientDatabase[u];
+                
+                // خوش‌آمدگویی پویا بر اساس نام مشتری
+                document.getElementById('welcomeUserText').textContent = `خوش آمدید، ${userData.name} عزیز! وضعیت پروژه شما:`;
                 document.getElementById('userDomainText').textContent = userData.domain;
                 document.getElementById('userPriceText').textContent = userData.price;
                 
@@ -1204,6 +1212,11 @@
                 statusEl.style.color = userData.statusColor;
 
                 document.getElementById('userSiteLink').href = userData.url;
+
+                // بارگذاری نوار پیشرفت پروژه (۱ تا ۱۰۰)
+                const prog = Math.min(Math.max(userData.progress || 0, 0), 100);
+                document.getElementById('progressPercentText').textContent = prog + '%';
+                document.getElementById('progressBarFill').style.width = prog + '%';
 
                 document.getElementById('loginModal').style.display = 'none';
                 document.getElementById('dashboardModal').style.display = 'flex';
@@ -1216,7 +1229,6 @@
             if (event.target.classList.contains('modal')) {
                 closeAllModals();
             }
-            // بستن منوی همبرگری با کلیک بیرون از آن
             if (!event.target.closest('.hamburger-wrapper')) {
                 closeHamburgerMenu();
             }
