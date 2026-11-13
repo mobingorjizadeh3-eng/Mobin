@@ -8,6 +8,8 @@ const clientDatabase = {
         price: "۱۵,۰۰۰,۰۰۰ تومان",
         status: "پرداخت شده (تایید شده)",
         statusColor: "#00ff64",
+        serverStatus: "سرور فعال و پایدار 🟢",
+        deliveryTime: "تحویل شده", // فقط یکی از دو حالت: مثلا "۱۰ روز" یا "تحویل شده"
         progress: 100
     },
     "am.gorji": {
@@ -18,6 +20,8 @@ const clientDatabase = {
         price: "توافقی / در انتظار تعیین",
         status: "پرداخت نشده",
         statusColor: "#ff4d4d",
+        serverStatus: "❌🚨",
+        deliveryTime: "100000 روز", // فقط یکی از دو حالت: مثلا "۱۰ روز" یا "تحویل شده"
         progress: 1
     }
 };
