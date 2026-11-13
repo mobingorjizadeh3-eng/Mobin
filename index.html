@@ -664,7 +664,6 @@
         }
 
         .status-paid {
-            color: #00ff64;
             font-weight: bold;
             text-shadow: 0 0 8px rgba(0,255,100,0.4);
         }
@@ -1194,15 +1193,23 @@
             document.getElementById('faqModal').style.display = 'none';
         }
 
-        // احراز هویت متصل به فایل db.js
+        // احراز هویت متصل به فایل db.js با پشتیبان داخلی (Fallback)
         function handleLogin() {
             const u = document.getElementById('dbUser').value.trim();
             const p = document.getElementById('dbPass').value.trim();
 
-            if (typeof clientDatabase !== 'undefined' && clientDatabase[u] && clientDatabase[u].pass === p) {
-                const userData = clientDatabase[u];
+            // دیتابیس پشتیبان (تضمین کارکرد حتی در صورت تاخیر آپدیت db.js روی گیت‌هاب)
+            const fallbackDatabase = {
+                "mobin.gorjizadeh": { name: "مبین", pass: "mobin1130", domain: "mobin.cam", url: "https://mobin.cam", price: "۱۵,۰۰۰,۰۰۰ تومان", status: "پرداخت شده (تایید شده)", statusColor: "#00ff64", progress: 100 },
+                "am.gorji": { name: "امین", pass: "amin4275", domain: "ثبت نشده (❌)", url: "#", price: "توافقی / در انتظار تعیین", status: "پرداخت نشده", statusColor: "#ff4d4d", progress: 1 }
+            };
+
+            // استفاده از دیتابیس خارجی یا پشتیبان
+            const activeDB = (typeof clientDatabase !== 'undefined') ? clientDatabase : fallbackDatabase;
+
+            if (activeDB[u] && activeDB[u].pass === p) {
+                const userData = activeDB[u];
                 
-                // خوش‌آمدگویی پویا بر اساس نام مشتری
                 document.getElementById('welcomeUserText').textContent = `خوش آمدید، ${userData.name} عزیز! وضعیت پروژه شما:`;
                 document.getElementById('userDomainText').textContent = userData.domain;
                 document.getElementById('userPriceText').textContent = userData.price;
@@ -1213,7 +1220,6 @@
 
                 document.getElementById('userSiteLink').href = userData.url;
 
-                // بارگذاری نوار پیشرفت پروژه (۱ تا ۱۰۰)
                 const prog = Math.min(Math.max(userData.progress || 0, 0), 100);
                 document.getElementById('progressPercentText').textContent = prog + '%';
                 document.getElementById('progressBarFill').style.width = prog + '%';
