@@ -34,7 +34,7 @@
             line-height: 1.7;
         }
 
-        /* افکت پس‌زمینه نئونی متحرک و زنده‌تر */
+        /* افکت پس‌زمینه نئونی متحرک */
         @keyframes bgGlow {
             0% { transform: scale(1); opacity: 0.03; }
             50% { transform: scale(1.15); opacity: 0.06; }
@@ -73,6 +73,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            position: relative;
         }
 
         .logo-area {
@@ -163,6 +164,73 @@
             color: #fff;
             box-shadow: 0 0 18px var(--accent-pink);
             transform: scale(1.05);
+        }
+
+        /* دکمه و منوی همبرگری (دسکتاپ و موبایل) */
+        .hamburger-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .hamburger-btn {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            width: 38px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            box-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
+        }
+
+        .hamburger-btn:hover {
+            background: var(--accent-cyan);
+            color: #0b0f19;
+            box-shadow: 0 0 15px var(--accent-cyan);
+        }
+
+        .hamburger-dropdown {
+            display: none;
+            position: absolute;
+            top: 48px;
+            left: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 12px;
+            min-width: 185px;
+            padding: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 240, 255, 0.2);
+            z-index: 1500;
+            flex-direction: column;
+            gap: 5px;
+            animation: modalPop 0.2s ease;
+        }
+
+        .hamburger-dropdown.show {
+            display: flex;
+        }
+
+        .hamburger-dropdown a {
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.25s;
+        }
+
+        .hamburger-dropdown a:hover {
+            background: rgba(0, 240, 255, 0.15);
+            color: var(--accent-cyan);
         }
 
         .container {
@@ -472,18 +540,21 @@
             backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
+            overflow-y: auto;
+            padding: 20px 0;
         }
 
         .modal-content {
             background: var(--card-bg);
             border: 1px solid var(--accent-pink);
-            padding: 30px;
+            padding: 25px;
             border-radius: 16px;
             text-align: center;
             max-width: 400px;
             width: 90%;
             box-shadow: 0 0 30px rgba(255, 0, 127, 0.4);
             animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin: auto;
         }
 
         @keyframes modalPop {
@@ -545,18 +616,17 @@
         .dashboard-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 14px;
             text-align: right;
-            margin-top: 15px;
+            margin-top: 12px;
         }
 
         .dash-card-square {
             background: rgba(11, 15, 25, 0.6);
             border: 1px solid var(--accent-cyan);
-            padding: 20px;
+            padding: 16px;
             border-radius: 12px;
             text-align: center;
-            aspect-ratio: 2 / 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -567,7 +637,7 @@
         .dash-card-rect {
             background: rgba(11, 15, 25, 0.6);
             border: 1px solid var(--border-color);
-            padding: 15px 20px;
+            padding: 14px 18px;
             border-radius: 12px;
             display: flex;
             justify-content: space-between;
@@ -584,7 +654,7 @@
         .dash-card-rgb {
             background: rgba(11, 15, 25, 0.7);
             border: 2px solid #00ff64;
-            padding: 15px 20px;
+            padding: 14px 18px;
             border-radius: 12px;
             display: flex;
             justify-content: space-between;
@@ -596,6 +666,77 @@
             color: #00ff64;
             font-weight: bold;
             text-shadow: 0 0 8px rgba(0,255,100,0.4);
+        }
+
+        /* دکمه مشاهده سایت در پنل */
+        .view-site-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 240, 255, 0.12);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+        }
+
+        .view-site-btn:hover {
+            background: var(--accent-cyan);
+            color: #0b0f19;
+            box-shadow: 0 0 20px var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+
+        /* کادر دایره‌ای شکل تغییر بخشی از سایت */
+        .circle-edit-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 6px;
+        }
+
+        .circle-edit-btn {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 0, 127, 0.18) 0%, rgba(11, 15, 25, 0.85) 100%);
+            border: 2px solid var(--accent-pink);
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 12px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            line-height: 1.4;
+            box-shadow: 0 0 18px rgba(255, 0, 127, 0.35);
+            transition: 0.35s;
+        }
+
+        .circle-edit-btn i {
+            font-size: 1.4rem;
+            color: var(--accent-pink);
+            margin-bottom: 6px;
+            transition: 0.35s;
+        }
+
+        .circle-edit-btn:hover {
+            background: var(--accent-pink);
+            color: #fff;
+            transform: scale(1.07);
+            box-shadow: 0 0 28px var(--accent-pink);
+        }
+
+        .circle-edit-btn:hover i {
+            color: #fff;
         }
 
         footer {
@@ -646,6 +787,8 @@
             .hero h1 { font-size: 2rem; }
             nav { display: none; }
             .quick-cta-btn { display: none; }
+            .header-left { gap: 8px; }
+            .panel-btn { padding: 6px 10px; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -654,7 +797,7 @@
     <!-- صفحه سفید مسدودسازی به دلیل رفلرش زیاد -->
     <div id="blockScreen">
         <h1>⚠️ دسترسی موقت مسدود شد</h1>
-        <p>شما به دلیل رفرش زیاد تا <span id="countdown">30</span> ثانیه بلاک شدید.</p>
+        <p>شما به دلیل رفلرش زیاد تا <span id="countdown">30</span> ثانیه بلاک شدید.</p>
     </div>
 
     <!-- هدر سایت -->
@@ -675,6 +818,21 @@
                 <a href="#order">ثبت سفارش</a>
             </nav>
             <button class="panel-btn" onclick="openPanelModal()">ورود به پنل</button>
+            
+            <!-- منوی همبرگری کنار دکمه ورود به پنل -->
+            <div class="hamburger-wrapper">
+                <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleHamburgerMenu()" title="منو">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="hamburger-dropdown" id="hamburgerMenu">
+                    <a href="#order" onclick="closeHamburgerMenu()">
+                        <i class="fa-solid fa-headset" style="color: var(--accent-cyan);"></i> مشاوره رایگان
+                    </a>
+                    <a href="#contact-footer" onclick="closeHamburgerMenu()">
+                        <i class="fa-solid fa-paper-plane" style="color: var(--accent-pink);"></i> ارتباط با ما
+                    </a>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -725,25 +883,38 @@
             <div class="dashboard-container">
                 <div class="dash-card-square">
                     <span style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px;">🌐 نام دامنه ثبت شده:</span>
-                    <strong style="font-size: 1.3rem; color: var(--accent-cyan);">mobin.cam</strong>
+                    <strong id="userDomainText" style="font-size: 1.3rem; color: var(--accent-cyan);">mobin.cam</strong>
                 </div>
 
                 <div class="dash-card-rect">
                     <span style="font-size: 0.9rem; color: var(--text-muted);">💵 هزینه ساخت سایت:</span>
-                    <strong style="font-size: 1rem;">۱۵,۰۰۰,۰۰۰ تومان</strong>
+                    <strong id="userPriceText" style="font-size: 1rem;">۱۵,۰۰۰,۰۰۰ تومان</strong>
                 </div>
 
                 <div class="dash-card-rgb">
                     <span style="font-size: 0.9rem; color: var(--text-muted);">📊 وضعیت پرداخت:</span>
-                    <span class="status-paid">پرداخت شده (تایید شده)</span>
+                    <span id="userStatusText" class="status-paid">پرداخت شده (تایید شده)</span>
+                </div>
+
+                <!-- دکمه مشاهده سایت -->
+                <a id="userSiteLink" href="https://mobin.cam" target="_blank" class="view-site-btn">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> مشاهده سایت
+                </a>
+
+                <!-- کادر دایره‌ای شکل تغییر بخشی از سایت -->
+                <div class="circle-edit-wrapper">
+                    <a href="https://t.me/Mobin_Gorjizadeh2" target="_blank" class="circle-edit-btn">
+                        <i class="fa-brands fa-telegram"></i>
+                        <span>تغییر بخشی از سایت</span>
+                    </a>
                 </div>
             </div>
 
-            <p style="margin-top: 20px; font-weight: bold; font-size: 1rem; color: var(--text-main);">
+            <p style="margin-top: 15px; font-weight: bold; font-size: 0.95rem; color: var(--text-main);">
                 بقیه قابلیت‌ها به‌زودی... 🚀
             </p>
 
-            <button class="close-modal-btn" onclick="closeAllModals()" style="background: var(--accent-pink); color: #fff; width: 100%; margin-top: 15px;">خروج از پنل</button>
+            <button class="close-modal-btn" onclick="closeAllModals()" style="background: var(--accent-pink); color: #fff; width: 100%; margin-top: 10px;">خروج از پنل</button>
         </div>
     </div>
 
@@ -782,7 +953,7 @@
                         </div>
                     </div>
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px;">
-                        سرویس فروش فیلتر شکن و اتصال پایدار؛ طراحی مینی‌اپلیکیشن و مدیریت حرفه‌ای سرورها.
+                        سرویس پروکسی و اتصال پایدار؛ طراحی مینی‌اپلیکیشن و مدیریت حرفه‌ای سرورها.
                     </p>
                     <a href="https://t.me/mobin1vpn" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-size: 0.85rem; font-weight: bold;">
                         <i class="fa-brands fa-telegram"></i> کانال تلگرام پروژه &larr;
@@ -798,7 +969,7 @@
                         </div>
                     </div>
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px;">
-                        پروژه فروش گیفت‌های تلگرام (پروژه موقتا دیلیت شده).
+                        پروژه فروش گیفت‌های تلگرام (به‌زودی با سرویس کامل فعال می‌شود).
                     </p>
                     <span style="color: var(--text-muted); font-size: 0.8rem; font-style: italic;">آپلود لوگو به‌زودی...</span>
                 </div>
@@ -878,7 +1049,7 @@
     </div>
 
     <!-- فوتر و شبکه‌های اجتماعی -->
-    <footer>
+    <footer id="contact-footer">
         <div class="container">
             <div class="social-icons">
                 <a href="https://t.me/Mobin_Gorjizadeh2" target="_blank" title="Telegram">
@@ -915,10 +1086,10 @@
                 return;
             }
 
-            if (now - refreshData.time < 40000) { // بازه زمانی ۴۰ ثانیه
+            if (now - refreshData.time < 40000) {
                 refreshData.count++;
-                if (refreshData.count > 4) { // بیشتر از ۴ بار رفلرش
-                    refreshData.blockedUntil = now + 30000; // مسدودسازی ۳۰ ثانیه
+                if (refreshData.count > 4) {
+                    refreshData.blockedUntil = now + 30000;
                     localStorage.setItem('mobin_refresh_guard', JSON.stringify(refreshData));
                     triggerBlockScreen(30);
                     return;
@@ -949,9 +1120,19 @@
             });
         }
 
+        // کنترل منوی همبرگری
+        function toggleHamburgerMenu() {
+            const menu = document.getElementById('hamburgerMenu');
+            menu.classList.toggle('show');
+        }
+
+        function closeHamburgerMenu() {
+            const menu = document.getElementById('hamburgerMenu');
+            menu.classList.remove('show');
+        }
+
         // ۳. ارسال فرم به تلگرام به همراه سیستم ضد بات (Honeypot)
         function sendToTelegram() {
-            // بررسی فیلد تله ربات
             const trap = document.getElementById('website_trap').value;
             if (trap !== "") {
                 alert("خطا در ارسال اطلاعات!");
@@ -982,6 +1163,7 @@
         }
 
         function openPanelModal() {
+            closeHamburgerMenu();
             document.getElementById('panelModal').style.display = 'flex';
         }
 
@@ -996,11 +1178,33 @@
             document.getElementById('dashboardModal').style.display = 'none';
         }
 
+        // دیتابیس تستی کاربران
+        const testDatabase = {
+            "mobin.gorjizadeh": {
+                pass: "mobin1130",
+                domain: "mobin.cam",
+                url: "https://mobin.cam",
+                price: "۱۵,۰۰۰,۰۰۰ تومان",
+                status: "پرداخت شده (تایید شده)",
+                statusColor: "#00ff64"
+            }
+        };
+
         function handleLogin() {
             const u = document.getElementById('dbUser').value.trim();
             const p = document.getElementById('dbPass').value.trim();
 
-            if (u === 'mobin.gorjizadeh' && p === 'mobin1130') {
+            if (testDatabase[u] && testDatabase[u].pass === p) {
+                const userData = testDatabase[u];
+                document.getElementById('userDomainText').textContent = userData.domain;
+                document.getElementById('userPriceText').textContent = userData.price;
+                
+                const statusEl = document.getElementById('userStatusText');
+                statusEl.textContent = userData.status;
+                statusEl.style.color = userData.statusColor;
+
+                document.getElementById('userSiteLink').href = userData.url;
+
                 document.getElementById('loginModal').style.display = 'none';
                 document.getElementById('dashboardModal').style.display = 'flex';
             } else {
@@ -1011,6 +1215,10 @@
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
                 closeAllModals();
+            }
+            // بستن منوی همبرگری با کلیک بیرون از آن
+            if (!event.target.closest('.hamburger-wrapper')) {
+                closeHamburgerMenu();
             }
         }
 
