@@ -243,7 +243,6 @@
             padding: 0 20px;
         }
 
-        /* کاهش فاصله عمودی بین بخش‌ها برای پویایی بیشتر */
         section {
             padding: 55px 0 20px 0;
         }
@@ -572,7 +571,7 @@
         .modal-content p {
             color: var(--text-muted);
             font-size: 0.9rem;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             line-height: 1.6;
         }
 
@@ -593,32 +592,28 @@
             box-shadow: 0 0 10px #fff;
         }
 
-        .test-version-btn {
-            background: rgba(0, 240, 255, 0.15);
-            border: 1px solid var(--accent-cyan);
-            color: var(--accent-cyan);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
+        /* دکمه/متن ریز ساخت حساب کاربری در صفحه ورود */
+        .create-acc-link {
             display: inline-block;
+            background: none;
+            border: none;
+            color: var(--accent-cyan);
+            font-size: 0.8rem;
             margin-top: 10px;
-            text-decoration: none;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: 0.3s;
+            font-family: 'Vazirmatn', sans-serif;
         }
 
-        .test-version-btn:hover {
-            background: var(--accent-cyan);
-            color: #0b0f19;
-            box-shadow: 0 0 12px var(--accent-cyan);
-            transform: scale(1.05);
+        .create-acc-link:hover {
+            color: var(--accent-pink);
         }
 
         .dashboard-container {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
             text-align: right;
             margin-top: 12px;
         }
@@ -626,7 +621,7 @@
         .dash-card-square {
             background: rgba(11, 15, 25, 0.6);
             border: 1px solid var(--accent-cyan);
-            padding: 16px;
+            padding: 15px;
             border-radius: 12px;
             text-align: center;
             display: flex;
@@ -639,7 +634,7 @@
         .dash-card-rect {
             background: rgba(11, 15, 25, 0.6);
             border: 1px solid var(--border-color);
-            padding: 14px 18px;
+            padding: 12px 16px;
             border-radius: 12px;
             display: flex;
             justify-content: space-between;
@@ -656,7 +651,7 @@
         .dash-card-rgb {
             background: rgba(11, 15, 25, 0.7);
             border: 2px solid #00ff64;
-            padding: 14px 18px;
+            padding: 12px 16px;
             border-radius: 12px;
             display: flex;
             justify-content: space-between;
@@ -700,8 +695,8 @@
         }
 
         .circle-edit-btn {
-            width: 130px;
-            height: 130px;
+            width: 125px;
+            height: 125px;
             border-radius: 50%;
             background: radial-gradient(circle, rgba(255, 0, 127, 0.18) 0%, rgba(11, 15, 25, 0.85) 100%);
             border: 2px solid var(--accent-pink);
@@ -721,9 +716,9 @@
         }
 
         .circle-edit-btn i {
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             color: var(--accent-pink);
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             transition: 0.35s;
         }
 
@@ -785,7 +780,7 @@
         @media(max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             nav { display: none; }
-            .quick-cta-btn { display: none; } /* پنهان شدن دکمه دسکتاپ و منتقل شدن به منوی همبرگری برای موبایل */
+            .quick-cta-btn { display: none; }
             .header-left { gap: 8px; }
             .panel-btn { padding: 6px 10px; font-size: 0.8rem; }
         }
@@ -817,7 +812,8 @@
                 <a href="#services">خدمات</a>
                 <a href="#order">ثبت سفارش</a>
             </nav>
-            <button class="panel-btn" onclick="openPanelModal()">ورود به پنل</button>
+            <!-- با کلیک مستقیم صفحه ورود باز می‌شود -->
+            <button class="panel-btn" onclick="openLoginModal()">ورود به پنل</button>
             
             <div class="hamburger-wrapper">
                 <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleHamburgerMenu()" title="منو">
@@ -850,19 +846,18 @@
         </div>
     </div>
 
-    <!-- مدال عمومی (پیام در دست ساخت) -->
-    <div id="panelModal" class="modal">
+    <!-- مدال راهنمای ساخت حساب کاربری -->
+    <div id="createAccountModal" class="modal">
         <div class="modal-content">
-            <h3>🔒 بخش در دست ساخت</h3>
-            <p>این بخش مخصوص عزیزانی است که از ما سایت خریداری کرده‌اند و از اینجا می‌توانند وضعیت سایت و اطلاعات خود را مدیریت کنند. این قابلیت در به‌روزرسانی‌های بعدی اضافه می‌شود و فعلاً غیرفعال است.</p>
+            <h3 style="color: var(--accent-cyan);">📝 ساخت حساب کاربری</h3>
+            <p>اگر شما از ما سایت خریداری بکنید، بعد از تکمیل پرداختتان ادمین به شما یک یوزرنیم و پسورد اختصاصی می‌دهد و باید همان یوزر و پس را در صفحه ورود وارد کنید. برای دریافت یوزرنیم و پسورد ابتدا باید از ما وب‌سایت خریداری کنید.</p>
+            <a href="#order" onclick="closeAllModals()" class="submit-btn" style="text-decoration: none; display: inline-block; font-size: 0.9rem; padding: 10px;">ثبت سفارش و خرید وب‌سایت</a>
             <br>
-            <button class="test-version-btn" onclick="switchToLoginModal()">ورود و تست نسخه اولیه</button>
-            <br>
-            <button class="close-modal-btn" onclick="closeAllModals()">بستن</button>
+            <button class="close-modal-btn" onclick="switchToLoginFromInfo()">بازگشت به ورود</button>
         </div>
     </div>
 
-    <!-- مدال لاگین امن -->
+    <!-- مدال لاگین امن (مستقیم) -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <h3>🔐 ورود به پنل کاربری</h3>
@@ -878,13 +873,14 @@
                 <input type="password" id="dbPass" class="form-control" placeholder="password..." dir="ltr">
             </div>
 
-            <button class="submit-btn" onclick="handleLogin()" style="margin-bottom: 10px; font-size: 0.9rem; padding: 10px;">ورود به پنل</button>
+            <button class="submit-btn" onclick="handleLogin()" style="margin-bottom: 5px; font-size: 0.9rem; padding: 10px;">ورود به پنل</button>
             
-            <button class="form-control" style="background: rgba(255,255,255,0.05); cursor: pointer; font-size: 0.85rem;" onclick="alert('ورود با گوگل در این نسخه تستی غیرفعال است.')">
-                <i class="fa-brands fa-google"></i> ورود با گوگل (به زودی)
-            </button>
+            <!-- دکمه ریز ساخت حساب کاربری -->
+            <div>
+                <button type="button" class="create-acc-link" onclick="openCreateAccountModal()">ساخت حساب کاربری</button>
+            </div>
 
-            <button class="close-modal-btn" onclick="closeAllModals()" style="margin-top: 15px;">بازگشت</button>
+            <button class="close-modal-btn" onclick="closeAllModals()" style="margin-top: 15px;">بستن</button>
         </div>
     </div>
 
@@ -898,6 +894,18 @@
                 <div class="dash-card-square">
                     <span style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px;">🌐 نام دامنه ثبت شده:</span>
                     <strong id="userDomainText" style="font-size: 1.3rem; color: var(--accent-cyan);">---</strong>
+                </div>
+
+                <!-- وضعیت سرور و هاست (گزینه ۲) -->
+                <div class="dash-card-rect">
+                    <span style="font-size: 0.9rem; color: var(--text-muted);">🖥️ وضعیت سرور و هاست:</span>
+                    <strong id="userServerStatus" style="font-size: 0.9rem; color: #00ff64;">---</strong>
+                </div>
+
+                <!-- مدت زمان تحویل پروژه (گزینه ۳ اصلاح‌شده) -->
+                <div class="dash-card-rect">
+                    <span style="font-size: 0.9rem; color: var(--text-muted);">⏱️ وضعیت / زمان تحویل:</span>
+                    <strong id="userDeliveryTime" style="font-size: 0.95rem; color: var(--accent-cyan);">---</strong>
                 </div>
 
                 <div class="dash-card-rect">
@@ -933,11 +941,7 @@
                 </div>
             </div>
 
-            <p style="margin-top: 15px; font-weight: bold; font-size: 0.95rem; color: var(--text-main);">
-                بقیه قابلیت‌ها به‌زودی... 🚀
-            </p>
-
-            <button class="close-modal-btn" onclick="closeAllModals()" style="background: var(--accent-pink); color: #fff; width: 100%; margin-top: 10px;">خروج از پنل</button>
+            <button class="close-modal-btn" onclick="closeAllModals()" style="background: var(--accent-pink); color: #fff; width: 100%; margin-top: 15px;">خروج از پنل</button>
         </div>
     </div>
 
@@ -1076,7 +1080,6 @@
                 <a href="https://www.instagram.com/mobin_gorjizadeh?mdxt=MThncTl2MDhodmZqag%3D%3D&utm_source=qr" target="_blank" title="Instagram">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
-                <!-- اصلاح آدرس ایمیل -->
                 <a href="mailto:mobin.gorjizadh@gmail.com" title="Email">
                     <i class="fa-solid fa-envelope"></i>
                 </a>
@@ -1084,7 +1087,7 @@
             <p style="color: var(--text-muted); font-size: 0.85rem;">
                 تمامی حقوق محفوظ است | توسعه داده شده با ❤️ توسط مبین گرجی‌زاده
             </p>
-            <div class="version-tag">V 0.6 &nbsp;&copy; Mobin Gorjizadeh</div>
+            <div class="version-tag">V 0.8 &nbsp;&copy; Mobin Gorjizadeh</div>
         </div>
     </footer>
 
@@ -1177,25 +1180,30 @@
             window.open(telegramUrl, '_blank');
         }
 
-        function openPanelModal() {
+        function openLoginModal() {
             closeHamburgerMenu();
-            document.getElementById('panelModal').style.display = 'flex';
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        function openCreateAccountModal() {
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('createAccountModal').style.display = 'flex';
+        }
+
+        function switchToLoginFromInfo() {
+            document.getElementById('createAccountModal').style.display = 'none';
+            document.getElementById('loginModal').style.display = 'flex';
         }
 
         function openFaqModal() {
             document.getElementById('faqModal').style.display = 'flex';
         }
 
-        function switchToLoginModal() {
-            document.getElementById('panelModal').style.display = 'none';
-            document.getElementById('loginModal').style.display = 'flex';
-        }
-
         function closeAllModals() {
-            document.getElementById('panelModal').style.display = 'none';
             document.getElementById('loginModal').style.display = 'none';
             document.getElementById('dashboardModal').style.display = 'none';
             document.getElementById('faqModal').style.display = 'none';
+            document.getElementById('createAccountModal').style.display = 'none';
         }
 
         function handleLogin() {
@@ -1203,8 +1211,8 @@
             const p = document.getElementById('dbPass').value.trim();
 
             const fallbackDatabase = {
-                "mobin.gorjizadeh": { name: "مبین", pass: "mobin1130", domain: "mobin.cam", url: "https://mobin.cam", price: "۱۵,۰۰۰,۰۰۰ تومان", status: "پرداخت شده (تایید شده)", statusColor: "#00ff64", progress: 100 },
-                "am.gorji": { name: "امین", pass: "amin4275", domain: "ثبت نشده (❌)", url: "#", price: "توافقی / در انتظار تعیین", status: "پرداخت نشده", statusColor: "#ff4d4d", progress: 1 }
+                "mobin.gorjizadeh": { name: "مبین", pass: "mobin1130", domain: "mobin.cam", url: "https://mobin.cam", price: "۱۵,۰۰۰,۰۰۰ تومان", status: "پرداخت شده (تایید شده)", statusColor: "#00ff64", serverStatus: "سرور فعال و پایدار 🟢", deliveryTime: "تحویل شده", progress: 100 },
+                "am.gorji": { name: "امین", pass: "amin4275", domain: "ثبت نشده (❌)", url: "#", price: "توافقی / در انتظار تعیین", status: "پرداخت نشده", statusColor: "#ff4d4d", serverStatus: "در حال آماده‌سازی 🟡", deliveryTime: "۱۰ روز", progress: 1 }
             };
 
             const activeDB = (typeof clientDatabase !== 'undefined') ? clientDatabase : fallbackDatabase;
@@ -1214,6 +1222,8 @@
                 
                 document.getElementById('welcomeUserText').textContent = `خوش آمدید، ${userData.name} عزیز! وضعیت پروژه شما:`;
                 document.getElementById('userDomainText').textContent = userData.domain;
+                document.getElementById('userServerStatus').textContent = userData.serverStatus || "سرور فعال و پایدار 🟢";
+                document.getElementById('userDeliveryTime').textContent = userData.deliveryTime || "تحویل شده";
                 document.getElementById('userPriceText').textContent = userData.price;
                 
                 const statusEl = document.getElementById('userStatusText');
