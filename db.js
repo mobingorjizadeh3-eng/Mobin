@@ -17,7 +17,7 @@ const clientDatabase = {
         url: "#",
         price: "توافقی / در انتظار تعیین",
         status: "پرداخت نشده",
-        statusColor: "#ff4d4d", // رنگ قرمز برای وضعیت پرداخت نشده
-        progress: 1 // درصد پیشرفت پروژه
+        statusColor: "#ff4d4d",
+        progress: 1
     }
 };
