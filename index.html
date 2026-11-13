@@ -425,7 +425,41 @@
             box-shadow: 0 0 25px var(--accent-cyan);
         }
 
-        /* مدال عمومی با انیمیشن نئونی جذاب‌تر */
+        /* فیلد مخفی ضد بات (Honeypot) */
+        .bot-field {
+            display: none !important;
+        }
+
+        /* صفحه مسدودسازی رفلرش مداوم */
+        #blockScreen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            color: #0b0f19;
+            z-index: 99999;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        #blockScreen h1 {
+            color: #ff007f;
+            margin-bottom: 15px;
+            font-size: 2rem;
+        }
+
+        #blockScreen p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        /* مدال عمومی */
         .modal {
             display: none;
             position: fixed;
@@ -508,7 +542,6 @@
             transform: scale(1.05);
         }
 
-        /* استایل پنل داخلی */
         .dashboard-container {
             display: flex;
             flex-direction: column;
@@ -541,7 +574,6 @@
             align-items: center;
         }
 
-        /* افکت RGB برای وضعیت پرداخت */
         @keyframes rgbBorder {
             0% { border-color: #00ff64; box-shadow: 0 0 12px rgba(0,255,100,0.3); }
             33% { border-color: #00f0ff; box-shadow: 0 0 12px rgba(0,240,255,0.3); }
@@ -566,7 +598,6 @@
             text-shadow: 0 0 8px rgba(0,255,100,0.4);
         }
 
-        /* فوتر */
         footer {
             border-top: 1px solid var(--border-color);
             padding: 30px 0;
@@ -619,6 +650,12 @@
     </style>
 </head>
 <body>
+
+    <!-- صفحه سفید مسدودسازی به دلیل رفلرش زیاد -->
+    <div id="blockScreen">
+        <h1>⚠️ دسترسی موقت مسدود شد</h1>
+        <p>شما به دلیل رفلرش زیاد تا <span id="countdown">30</span> ثانیه بلاک شدید.</p>
+    </div>
 
     <!-- هدر سایت -->
     <header>
@@ -796,6 +833,9 @@
             <h2 class="section-title">درخواست مشاوره و ثبت سفارش</h2>
             <div class="order-section">
                 <form id="consultForm">
+                    <!-- فیلد مخفی ضد بات (Honeypot) -->
+                    <input type="text" id="website_trap" class="bot-field" tabindex="-1" autocomplete="off">
+
                     <div class="form-group">
                         <label for="fullName">نام و نام خانوادگی:</label>
                         <input type="text" id="fullName" class="form-control" placeholder="مثال: علی رضایی" required>
@@ -847,20 +887,77 @@
                 <a href="https://www.instagram.com/mobin_gorjizadeh?mdxt=MThncTl2MDhodmZqag%3D%3D&utm_source=qr" target="_blank" title="Instagram">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
-                <a href="mailto:mobin.gorjizadh@gmail.com" title="Email">
+                <a href="mailto:mobin.gorjizadh.gmail.com" title="Email">
                     <i class="fa-solid fa-envelope"></i>
                 </a>
             </div>
             <p style="color: var(--text-muted); font-size: 0.85rem;">
                 تمامی حقوق محفوظ است | توسعه داده شده با ❤️ توسط مبین گرجی‌زاده
             </p>
-            <div class="version-tag">V 0.4</div>
+            <div class="version-tag">V 0.5 &nbsp;&copy; Mobin Gorjizadeh</div>
         </div>
     </footer>
 
-    <!-- اسکریپت‌ها -->
+    <!-- اسکریپت‌های امنیتی و منطق سایت -->
     <script>
+        // ۱. سیستم ضد هک قاب (Clickjacking Protection)
+        if (window.self !== window.top) {
+            window.top.location = window.self.location;
+        }
+
+        // ۲. سیستم ضد رفلرش مداوم (Rate Limiting)
+        (function() {
+            const now = Date.now();
+            let refreshData = JSON.parse(localStorage.getItem('mobin_refresh_guard')) || { count: 0, time: now, blockedUntil: 0 };
+
+            if (now < refreshData.blockedUntil) {
+                triggerBlockScreen(Math.ceil((refreshData.blockedUntil - now) / 1000));
+                return;
+            }
+
+            if (now - refreshData.time < 40000) { // بازه زمانی ۴۰ ثانیه
+                refreshData.count++;
+                if (refreshData.count > 4) { // بیشتر از ۴ بار رفلرش
+                    refreshData.blockedUntil = now + 30000; // مسدودسازی ۳۰ ثانیه
+                    localStorage.setItem('mobin_refresh_guard', JSON.stringify(refreshData));
+                    triggerBlockScreen(30);
+                    return;
+                }
+            } else {
+                refreshData.count = 1;
+                refreshData.time = now;
+            }
+            localStorage.setItem('mobin_refresh_guard', JSON.stringify(refreshData));
+        })();
+
+        function triggerBlockScreen(secondsLeft) {
+            document.addEventListener("DOMContentLoaded", function() {
+                const screen = document.getElementById('blockScreen');
+                const counter = document.getElementById('countdown');
+                screen.style.display = 'flex';
+
+                let timer = setInterval(() => {
+                    secondsLeft--;
+                    counter.textContent = secondsLeft;
+                    if (secondsLeft <= 0) {
+                        clearInterval(timer);
+                        localStorage.removeItem('mobin_refresh_guard');
+                        screen.style.display = 'none';
+                        window.location.reload();
+                    }
+                }, 1000);
+            });
+        }
+
+        // ۳. ارسال فرم به تلگرام به همراه سیستم ضد بات (Honeypot)
         function sendToTelegram() {
+            // بررسی فیلد تله ربات
+            const trap = document.getElementById('website_trap').value;
+            if (trap !== "") {
+                alert("خطا در ارسال اطلاعات!");
+                return;
+            }
+
             const name = document.getElementById('fullName').value;
             const phone = document.getElementById('phone').value;
             const clientType = document.getElementById('clientType').value;
@@ -899,7 +996,6 @@
             document.getElementById('dashboardModal').style.display = 'none';
         }
 
-        // احراز هویت امن (بدون لو دادن یوزر و پسورد در پیام خطا)
         function handleLogin() {
             const u = document.getElementById('dbUser').value.trim();
             const p = document.getElementById('dbPass').value.trim();
