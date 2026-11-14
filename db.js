@@ -16,10 +16,10 @@ const clientDatabase = {
         pass: "amin4275",
         domain: "ثبت نشده (❌)",
         url: "#",
-        price: "توافقی / در انتظار تعیین",
+        price: "توافقی  ",
         status: "پرداخت نشده",
         statusColor: "#ff4d4d",
-        deliveryTime: "۱۰ روز",
+        deliveryTime: "♾️ روز",
         progress: 1
     }
 };
