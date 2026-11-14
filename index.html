@@ -19,6 +19,30 @@
             --border-color: rgba(0, 240, 255, 0.2);
         }
 
+        /* تم روشن (حالت روز) */
+        body.light-theme {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --accent-cyan: #0284c7;
+            --accent-pink: #db2777;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: rgba(2, 132, 199, 0.2);
+        }
+
+        body.light-theme header {
+            background: rgba(248, 250, 252, 0.85);
+        }
+
+        body.light-theme .bio-box,
+        body.light-theme .project-card,
+        body.light-theme .service-item,
+        body.light-theme .order-section,
+        body.light-theme .modal-content,
+        body.light-theme .hamburger-dropdown {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -32,6 +56,7 @@
             color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.7;
+            transition: background 0.3s, color 0.3s;
         }
 
         @keyframes bgGlow {
@@ -201,7 +226,7 @@
             background: var(--card-bg);
             border: 1px solid var(--accent-cyan);
             border-radius: 12px;
-            min-width: 205px;
+            min-width: 215px;
             padding: 8px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 240, 255, 0.2);
             z-index: 1500;
@@ -551,7 +576,7 @@
             padding: 25px;
             border-radius: 16px;
             text-align: center;
-            max-width: 400px;
+            max-width: 420px;
             width: 90%;
             box-shadow: 0 0 30px rgba(255, 0, 127, 0.4);
             animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -568,11 +593,22 @@
             margin-bottom: 10px;
         }
 
-        .modal-content p {
+        .modal-content p, .changelog-list li {
             color: var(--text-muted);
             font-size: 0.9rem;
-            margin-bottom: 18px;
             line-height: 1.6;
+        }
+
+        .changelog-list {
+            text-align: right;
+            margin: 15px 0;
+            padding-right: 15px;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+
+        .changelog-list li {
+            margin-bottom: 10px;
         }
 
         .close-modal-btn {
@@ -592,7 +628,6 @@
             box-shadow: 0 0 10px #fff;
         }
 
-        /* دکمه/متن ریز ساخت حساب کاربری در صفحه ورود */
         .create-acc-link {
             display: inline-block;
             background: none;
@@ -738,6 +773,25 @@
             padding: 30px 0;
             margin-top: 40px;
             text-align: center;
+            transition: 0.3s;
+        }
+
+        /* افکت کادر RGB سفارشی برای بخش ارتباط با ما */
+        @keyframes customRgbGlow {
+            0% { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.6); }   /* سبز */
+            20% { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.6); }  /* آبی */
+            40% { border-color: #eab308; box-shadow: 0 0 20px rgba(234,179,8,0.6); }   /* زرد */
+            60% { border-color: #92400e; box-shadow: 0 0 20px rgba(146,64,14,0.6); }   /* قهوه ای */
+            80% { border-color: #6b7280; box-shadow: 0 0 20px rgba(107,114,128,0.6); } /* خاکستری */
+            100% { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.6); }  /* سبز */
+        }
+
+        .rgb-highlight {
+            border: 3px solid #22c55e;
+            border-radius: 20px;
+            padding: 15px;
+            animation: customRgbGlow 2.5s infinite;
+            transition: 0.5s;
         }
 
         .social-icons {
@@ -812,8 +866,7 @@
                 <a href="#services">خدمات</a>
                 <a href="#order">ثبت سفارش</a>
             </nav>
-            <!-- با کلیک مستقیم صفحه ورود باز می‌شود -->
-            <button class="panel-btn" onclick="openLoginModal()">ورود به پنل</button>
+            <button class="panel-btn" onclick="openPanelModal()">ورود به پنل</button>
             
             <div class="hamburger-wrapper">
                 <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleHamburgerMenu()" title="منو">
@@ -826,16 +879,38 @@
                     <a href="#order" onclick="closeHamburgerMenu()">
                         <i class="fa-solid fa-headset" style="color: var(--accent-cyan);"></i> مشاوره رایگان
                     </a>
+                    <button onclick="openChangelogModal(); closeHamburgerMenu();">
+                        <i class="fa-solid fa-clock-rotate-left" style="color: var(--accent-cyan);"></i> تاریخچه به‌روزرسانی‌ها
+                    </button>
                     <button onclick="openFaqModal(); closeHamburgerMenu();">
                         <i class="fa-solid fa-circle-question" style="color: var(--accent-cyan);"></i> سوالات متداول
                     </button>
-                    <a href="#contact-footer" onclick="closeHamburgerMenu()">
+                    <!-- دکمه تغییر تم (روز / شب) -->
+                    <button onclick="toggleTheme(); closeHamburgerMenu();">
+                        <i id="themeIcon" class="fa-solid fa-sun" style="color: #eab308;"></i> <span id="themeText">تغییر تم (حالت روز)</span>
+                    </button>
+                    <button onclick="highlightContact(); closeHamburgerMenu();">
                         <i class="fa-solid fa-paper-plane" style="color: var(--accent-pink);"></i> ارتباط با ما
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- مدال تاریخچه به‌روزرسانی‌ها (Changelog) -->
+    <div id="changelogModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color: var(--accent-cyan);">📜 تاریخچه به‌روزرسانی‌ها (Changelog)</h3>
+            <ul class="changelog-list">
+                <li><strong>نسخه V 0.9:</strong> اضافه شدن تاریخچه به‌روزرسانی، سیستم تغییر تم (روز/شب)، افکت RGB سفارشی روی ارتباط با ما و حذف بخش سرور از پنل.</li>
+                <li><strong>نسخه V 0.8:</strong> ورود مستقیم به پنل، اضافه شدن وضعیت تحویل پروژه و بخش راهنمای ساخت حساب کاربری.</li>
+                <li><strong>نسخه V 0.6:</strong> جدا کردن دیتابیس به فایل `db.js`، اضافه شدن نوار پیشرفت پروژه (۱ تا ۱۰۰٪) و بخش سوالات متداول.</li>
+                <li><strong>نسخه V 0.5:</strong> سیستم Rate Limiting (ضد رفرش ۴۰ ثانیه‌ای)، فیلد تله بات (Honeypot) و محافظت در برابر Clickjacking.</li>
+                <li><strong>نسخه V 0.1 تا V 0.4:</strong> پیاده‌سازی ساختار اولیه نئونی، بخش پروژه‌ها، فرم ثبت سفارش تلگرامی و پنل کاربری تستی.</li>
+            </ul>
+            <button class="close-modal-btn" onclick="closeAllModals()">بستن</button>
+        </div>
+    </div>
 
     <!-- مدال سوالات متداول -->
     <div id="faqModal" class="modal">
@@ -857,7 +932,7 @@
         </div>
     </div>
 
-    <!-- مدال لاگین امن (مستقیم) -->
+    <!-- مدال لاگین امن -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <h3>🔐 ورود به پنل کاربری</h3>
@@ -875,7 +950,6 @@
 
             <button class="submit-btn" onclick="handleLogin()" style="margin-bottom: 5px; font-size: 0.9rem; padding: 10px;">ورود به پنل</button>
             
-            <!-- دکمه ریز ساخت حساب کاربری -->
             <div>
                 <button type="button" class="create-acc-link" onclick="openCreateAccountModal()">ساخت حساب کاربری</button>
             </div>
@@ -896,13 +970,7 @@
                     <strong id="userDomainText" style="font-size: 1.3rem; color: var(--accent-cyan);">---</strong>
                 </div>
 
-                <!-- وضعیت سرور و هاست (گزینه ۲) -->
-                <div class="dash-card-rect">
-                    <span style="font-size: 0.9rem; color: var(--text-muted);">🖥️ وضعیت سرور و هاست:</span>
-                    <strong id="userServerStatus" style="font-size: 0.9rem; color: #00ff64;">---</strong>
-                </div>
-
-                <!-- مدت زمان تحویل پروژه (گزینه ۳ اصلاح‌شده) -->
+                <!-- مدت زمان تحویل پروژه -->
                 <div class="dash-card-rect">
                     <span style="font-size: 0.9rem; color: var(--text-muted);">⏱️ وضعیت / زمان تحویل:</span>
                     <strong id="userDeliveryTime" style="font-size: 0.95rem; color: var(--accent-cyan);">---</strong>
@@ -1073,21 +1141,23 @@
     <!-- فوتر و شبکه‌های اجتماعی -->
     <footer id="contact-footer">
         <div class="container">
-            <div class="social-icons">
-                <a href="https://t.me/Mobin_Gorjizadeh2" target="_blank" title="Telegram">
-                    <i class="fa-brands fa-telegram"></i>
-                </a>
-                <a href="https://www.instagram.com/mobin_gorjizadeh?mdxt=MThncTl2MDhodmZqag%3D%3D&utm_source=qr" target="_blank" title="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="mailto:mobin.gorjizadh@gmail.com" title="Email">
-                    <i class="fa-solid fa-envelope"></i>
-                </a>
+            <div id="contactHighlightArea" style="display: inline-block; padding: 5px; transition: 0.5s;">
+                <div class="social-icons">
+                    <a href="https://t.me/Mobin_Gorjizadeh2" target="_blank" title="Telegram">
+                        <i class="fa-brands fa-telegram"></i>
+                    </a>
+                    <a href="https://www.instagram.com/mobin_gorjizadeh?mdxt=MThncTl2MDhodmZqag%3D%3D&utm_source=qr" target="_blank" title="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="mailto:mobin.gorjizadh@gmail.com" title="Email">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
             </div>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 10px;">
                 تمامی حقوق محفوظ است | توسعه داده شده با ❤️ توسط مبین گرجی‌زاده
             </p>
-            <div class="version-tag">V 0.8 &nbsp;&copy; Mobin Gorjizadeh</div>
+            <div class="version-tag">V 0.9 &nbsp;&copy; Mobin Gorjizadeh</div>
         </div>
     </footer>
 
@@ -1140,6 +1210,51 @@
             });
         }
 
+        // بارگذاری تم ذخیره شده کاربر
+        window.addEventListener("DOMContentLoaded", function() {
+            if (localStorage.getItem('mobin_theme') === 'light') {
+                document.body.classList.add('light-theme');
+                document.getElementById('themeIcon').className = "fa-solid fa-moon";
+                document.getElementById('themeIcon').style.color = "#38bdf8";
+                document.getElementById('themeText').textContent = "تغییر تم (حالت شب)";
+            }
+        });
+
+        // سیستم تغییر تم (روز / شب)
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const isLight = document.body.classList.contains('light-theme');
+            
+            const icon = document.getElementById('themeIcon');
+            const text = document.getElementById('themeText');
+
+            if (isLight) {
+                localStorage.setItem('mobin_theme', 'light');
+                icon.className = "fa-solid fa-moon";
+                icon.style.color = "#38bdf8";
+                text.textContent = "تغییر تم (حالت شب)";
+            } else {
+                localStorage.setItem('mobin_theme', 'dark');
+                icon.className = "fa-solid fa-sun";
+                icon.style.color = "#eab308";
+                text.textContent = "تغییر تم (حالت روز)";
+            }
+        }
+
+        // افکت کادر RGB برای بخش ارتباط با ما
+        function highlightContact() {
+            const footerArea = document.getElementById('contactHighlightArea');
+            footerArea.classList.add('rgb-highlight');
+            
+            // هدایت نرم به فوتر
+            document.getElementById('contact-footer').scrollIntoView({ behavior: 'smooth' });
+
+            // حذف افکت پس از ۵ ثانیه
+            setTimeout(() => {
+                footerArea.classList.remove('rgb-highlight');
+            }, 5000);
+        }
+
         function toggleHamburgerMenu() {
             const menu = document.getElementById('hamburgerMenu');
             menu.classList.toggle('show');
@@ -1180,7 +1295,7 @@
             window.open(telegramUrl, '_blank');
         }
 
-        function openLoginModal() {
+        function openPanelModal() {
             closeHamburgerMenu();
             document.getElementById('loginModal').style.display = 'flex';
         }
@@ -1199,10 +1314,15 @@
             document.getElementById('faqModal').style.display = 'flex';
         }
 
+        function openChangelogModal() {
+            document.getElementById('changelogModal').style.display = 'flex';
+        }
+
         function closeAllModals() {
             document.getElementById('loginModal').style.display = 'none';
             document.getElementById('dashboardModal').style.display = 'none';
             document.getElementById('faqModal').style.display = 'none';
+            document.getElementById('changelogModal').style.display = 'none';
             document.getElementById('createAccountModal').style.display = 'none';
         }
 
@@ -1211,8 +1331,8 @@
             const p = document.getElementById('dbPass').value.trim();
 
             const fallbackDatabase = {
-                "mobin.gorjizadeh": { name: "مبین", pass: "mobin1130", domain: "mobin.cam", url: "https://mobin.cam", price: "۱۵,۰۰۰,۰۰۰ تومان", status: "پرداخت شده (تایید شده)", statusColor: "#00ff64", serverStatus: "سرور فعال و پایدار 🟢", deliveryTime: "تحویل شده", progress: 100 },
-                "am.gorji": { name: "امین", pass: "amin4275", domain: "ثبت نشده (❌)", url: "#", price: "توافقی / در انتظار تعیین", status: "پرداخت نشده", statusColor: "#ff4d4d", serverStatus: "در حال آماده‌سازی 🟡", deliveryTime: "۱۰ روز", progress: 1 }
+                "mobin.gorjizadeh": { name: "مبین", pass: "mobin1130", domain: "mobin.cam", url: "https://mobin.cam", price: "۱۵,۰۰۰,۰۰۰ تومان", status: "پرداخت شده (تایید شده)", statusColor: "#00ff64", deliveryTime: "تحویل شده", progress: 100 },
+                "am.gorji": { name: "امین", pass: "amin4275", domain: "ثبت نشده (❌)", url: "#", price: "توافقی / در انتظار تعیین", status: "پرداخت نشده", statusColor: "#ff4d4d", deliveryTime: "۱۰ روز", progress: 1 }
             };
 
             const activeDB = (typeof clientDatabase !== 'undefined') ? clientDatabase : fallbackDatabase;
@@ -1222,7 +1342,6 @@
                 
                 document.getElementById('welcomeUserText').textContent = `خوش آمدید، ${userData.name} عزیز! وضعیت پروژه شما:`;
                 document.getElementById('userDomainText').textContent = userData.domain;
-                document.getElementById('userServerStatus').textContent = userData.serverStatus || "سرور فعال و پایدار 🟢";
                 document.getElementById('userDeliveryTime').textContent = userData.deliveryTime || "تحویل شده";
                 document.getElementById('userPriceText').textContent = userData.price;
                 
