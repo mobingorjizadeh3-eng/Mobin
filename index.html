@@ -41,7 +41,7 @@
         body.light-theme .modal-content,
         body.light-theme .hamburger-dropdown,
         body.light-theme .clients-ticker-section {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
         }
 
         * {
@@ -376,24 +376,24 @@
             box-shadow: 0 0 15px var(--accent-pink);
         }
 
-        /* استایل‌های بخش مشتریان ما (نوار متحرک بی‌نهایت) */
+        /* بخش مشتریان ما (کوچک، مینیمال و زیر پروژه‌ها) */
         .clients-ticker-section {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 20px 0;
-            margin-top: 25px;
+            border-radius: 12px;
+            padding: 12px 0;
+            margin-top: 20px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
 
         .ticker-title {
             text-align: center;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: bold;
             color: var(--accent-cyan);
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             letter-spacing: 0.5px;
         }
 
@@ -406,9 +406,9 @@
 
         .ticker-track {
             display: flex;
-            gap: 40px;
+            gap: 25px;
             align-items: center;
-            animation: scrollTicker 25s linear infinite;
+            animation: scrollTicker 22s linear infinite;
             white-space: nowrap;
             width: max-content;
         }
@@ -421,30 +421,28 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 8px 20px;
-            height: 75px;
-            min-width: 140px;
+            border-radius: 8px;
+            padding: 5px 12px;
+            height: 50px;
+            min-width: 95px;
         }
 
         .client-logo-item img {
-            max-height: 50px;
-            max-width: 110px;
+            max-height: 35px;
+            max-width: 75px;
             object-fit: contain;
-            /* حذف پس‌زمینه سفید با ترکیب آلفا/فیلتر برای تطبیق با تم تیره و روشن */
-            mix-blend-mode: multiply;
-            filter: contrast(120%);
+            mix-blend-mode: screen;
             transition: transform 0.3s;
         }
 
         body.light-theme .client-logo-item img {
-            mix-blend-mode: darken;
+            mix-blend-mode: multiply;
         }
 
         .client-logo-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
 
         @keyframes scrollTicker {
@@ -977,9 +975,9 @@
         <div class="modal-content">
             <h3 style="color: var(--accent-cyan);">📜 تاریخچه به‌روزرسانی‌ها (Changelog)</h3>
             <ul class="changelog-list">
-                <li><strong>نسخه V 0.9:</strong> اضافه شدن نوار متحرک بی‌نهایت «مشتریان ما» با آرم‌های اختصاصی، به‌روزرسانی وضعیت پروژه‌ها و پنل کاربری.</li>
-                <li><strong>نسخه V 0.8:</strong> ورود مستقیم به پنل، اضافه شدن وضعیت تحویل پروژه و بخش راهنمای ساخت حساب کاربری.</li>
-                <li><strong>نسخه V 0.6:</strong> جدا کردن دیتابیس به فایل `db.js`، اضافه شدن نوار پیشرفت پروژه (۱ تا ۱۰۰٪) و بخش سوالات متداول.</li>
+                <li><strong>نسخه V 0.9:</strong> به‌روزرسانی آرم‌های مشتریان با لینک‌های جدید و بهینه‌سازی بخش نمایشی.</li>
+                <li><strong>نسخه V 0.8:</strong> ورود مستقیم به پنل، وضعیت تحویل پروژه و راهنمای ساخت حساب کاربری.</li>
+                <li><strong>نسخه V 0.6:</strong> جدا کردن دیتابیس به فایل `db.js` و نوار پیشرفت پروژه.</li>
             </ul>
             <button class="close-modal-btn" onclick="closeAllModals()">بستن</button>
         </div>
@@ -1058,7 +1056,7 @@
                     <span id="userStatusText" class="status-paid">---</span>
                 </div>
 
-                <!-- نوار پیشرفت پروژه (۱ تا ۱۰۰) -->
+                <!-- نوار پیشرفت پروژه -->
                 <div class="dash-card-rect" style="flex-direction: column; align-items: flex-start; gap: 8px;">
                     <div style="display: flex; justify-content: space-between; width: 100%;">
                         <span style="font-size: 0.9rem; color: var(--text-muted);">📈 پیشرفت پروژه:</span>
@@ -1105,27 +1103,6 @@
             </div>
         </section>
 
-        <!-- بخش مشتریان ما (نوار متحرک بی‌نهایت با آرم‌های بدون پس‌زمینه) -->
-        <div class="clients-ticker-section reveal">
-            <div class="ticker-title">مشتریان ما</div>
-            <div class="ticker-container">
-                <div class="ticker-track">
-                    <!-- گروه اول آرم‌ها -->
-                    <div class="client-logo-item"><img src="https://i.ibb.co/3s6p46r/image-638baf.jpg" alt="Client 1"></div>
-                    <div class="client-logo-item"><img src="https://i.ibb.co/bF9c118/image-b0aa5c.jpg" alt="Client 2"></div>
-                    <div class="client-logo-item"><img src="https://i.ibb.co/3Wq175x/image-3cd7a8.jpg" alt="Client 3"></div>
-                    <!-- تکرار برای حرکت بی‌نهایت (حلقه پشت سر هم) -->
-                    <div class="client-logo-item"><img src="https://i.ibb.co/3s6p46r/image-638baf.jpg" alt="Client 1"></div>
-                    <div class="client-logo-item"><img src="https://i.ibb.co/bF9c118/image-b0aa5c.jpg" alt="Client 2"></div>
-                    <div class="client-logo-item"><img src="https://i.ibb.co/3Wq175x/image-3cd7a8.jpg" alt="Client 3"></div>
-                    <!-- تکرار مجدد برای نرمی حرکت روی مانیتورهای بزرگ -->
-                    <div class="client-logo-item"><img src="https://i.ibb.co/3s6p46r/image-638baf.jpg" alt="Client 1"></div>
-                    <div class="client-logo-item"><img src="https://i.ibb.co/bF9c118/image-b0aa5c.jpg" alt="Client 2"></div>
-                    <div class="client-logo-item"><img src="https://i.ibb.co/3Wq175x/image-3cd7a8.jpg" alt="Client 3"></div>
-                </div>
-            </div>
-        </div>
-
         <section id="projects" class="reveal">
             <h2 class="section-title">پروژه‌های من</h2>
             <div class="projects-grid">
@@ -1162,6 +1139,30 @@
 
             </div>
         </section>
+
+        <!-- بخش مشتریان ما (با ۲ لوگوی جدید و جای خالی برای سومی) -->
+        <div class="clients-ticker-section reveal">
+            <div class="ticker-title">مشتریان ما</div>
+            <div class="ticker-container">
+                <div class="ticker-track">
+                    <!-- لوگوی اول -->
+                    <div class="client-logo-item"><img src="https://i.ibb.co/HTSPNRb2/IMG-4916.jpg" alt="Client 1"></div>
+                    <!-- لوگوی دوم -->
+                    <div class="client-logo-item"><img src="https://i.ibb.co/ych0qfsh/IMG-4917.jpg" alt="Client 2"></div>
+                    <!-- جای خالی برای لوگوی سوم (به‌زودی) -->
+                    <div class="client-logo-item" style="color: var(--text-muted); font-size: 0.75rem; font-style: italic;">به‌زودی...</div>
+                    
+                    <!-- تکرار برای حرکت بی‌نهایت حلقه -->
+                    <div class="client-logo-item"><img src="https://i.ibb.co/HTSPNRb2/IMG-4916.jpg" alt="Client 1"></div>
+                    <div class="client-logo-item"><img src="https://i.ibb.co/ych0qfsh/IMG-4917.jpg" alt="Client 2"></div>
+                    <div class="client-logo-item" style="color: var(--text-muted); font-size: 0.75rem; font-style: italic;">به‌زودی...</div>
+
+                    <div class="client-logo-item"><img src="https://i.ibb.co/HTSPNRb2/IMG-4916.jpg" alt="Client 1"></div>
+                    <div class="client-logo-item"><img src="https://i.ibb.co/ych0qfsh/IMG-4917.jpg" alt="Client 2"></div>
+                    <div class="client-logo-item" style="color: var(--text-muted); font-size: 0.75rem; font-style: italic;">به‌زودی...</div>
+                </div>
+            </div>
+        </div>
 
         <section id="services" class="reveal">
             <h2 class="section-title">خدمات تخصصی</h2>
@@ -1435,7 +1436,6 @@
                 statusEl.textContent = userData.status;
                 statusEl.style.color = userData.statusColor;
 
-                // تنظیم رنگ حاشیه کارت وضعیت پرداخت برای امین (نارنجی)
                 const statusBox = document.getElementById('statusCardBox');
                 statusBox.style.borderColor = userData.statusColor;
 
