@@ -14,12 +14,12 @@ const clientDatabase = {
     "am.gorji": {
         name: "امین",
         pass: "amin4275",
-        domain: "ثبت نشده (❌)",
+        domain: "در حال ساخت 🚧",
         url: "#",
-        price: "توافقی  ",
-        status: "پرداخت نشده",
-        statusColor: "#ff4d4d",
-        deliveryTime: "♾️ روز",
-        progress: 1
+        price: "11 ملیون",
+        status: "در انتظار پرداخت",
+        statusColor: "#f97316", // رنگ نارنجی
+        deliveryTime: "۱۵ روز",
+        progress: 21 // درصد پیشرفت ۲۱٪
     }
 };
