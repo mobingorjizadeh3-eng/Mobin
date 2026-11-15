@@ -39,7 +39,8 @@
         body.light-theme .service-item,
         body.light-theme .order-section,
         body.light-theme .modal-content,
-        body.light-theme .hamburger-dropdown {
+        body.light-theme .hamburger-dropdown,
+        body.light-theme .clients-ticker-section {
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
@@ -373,6 +374,82 @@
             margin: 6px auto 0 auto;
             border-radius: 2px;
             box-shadow: 0 0 15px var(--accent-pink);
+        }
+
+        /* استایل‌های بخش مشتریان ما (نوار متحرک بی‌نهایت) */
+        .clients-ticker-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px 0;
+            margin-top: 25px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .ticker-title {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--accent-cyan);
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .ticker-container {
+            display: flex;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker-track {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            animation: scrollTicker 25s linear infinite;
+            white-space: nowrap;
+            width: max-content;
+        }
+
+        .ticker-track:hover {
+            animation-play-state: paused;
+        }
+
+        .client-logo-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 8px 20px;
+            height: 75px;
+            min-width: 140px;
+        }
+
+        .client-logo-item img {
+            max-height: 50px;
+            max-width: 110px;
+            object-fit: contain;
+            /* حذف پس‌زمینه سفید با ترکیب آلفا/فیلتر برای تطبیق با تم تیره و روشن */
+            mix-blend-mode: multiply;
+            filter: contrast(120%);
+            transition: transform 0.3s;
+        }
+
+        body.light-theme .client-logo-item img {
+            mix-blend-mode: darken;
+        }
+
+        .client-logo-item:hover img {
+            transform: scale(1.1);
+        }
+
+        @keyframes scrollTicker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50%); }
         }
 
         .projects-grid {
@@ -776,14 +853,13 @@
             transition: 0.3s;
         }
 
-        /* افکت کادر RGB سفارشی برای بخش ارتباط با ما */
         @keyframes customRgbGlow {
-            0% { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.6); }   /* سبز */
-            20% { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.6); }  /* آبی */
-            40% { border-color: #eab308; box-shadow: 0 0 20px rgba(234,179,8,0.6); }   /* زرد */
-            60% { border-color: #92400e; box-shadow: 0 0 20px rgba(146,64,14,0.6); }   /* قهوه ای */
-            80% { border-color: #6b7280; box-shadow: 0 0 20px rgba(107,114,128,0.6); } /* خاکستری */
-            100% { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.6); }  /* سبز */
+            0% { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.6); }
+            20% { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.6); }
+            40% { border-color: #eab308; box-shadow: 0 0 20px rgba(234,179,8,0.6); }
+            60% { border-color: #92400e; box-shadow: 0 0 20px rgba(146,64,14,0.6); }
+            80% { border-color: #6b7280; box-shadow: 0 0 20px rgba(107,114,128,0.6); }
+            100% { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.6); }
         }
 
         .rgb-highlight {
@@ -885,7 +961,6 @@
                     <button onclick="openFaqModal(); closeHamburgerMenu();">
                         <i class="fa-solid fa-circle-question" style="color: var(--accent-cyan);"></i> سوالات متداول
                     </button>
-                    <!-- دکمه تغییر تم (روز / شب) -->
                     <button onclick="toggleTheme(); closeHamburgerMenu();">
                         <i id="themeIcon" class="fa-solid fa-sun" style="color: #eab308;"></i> <span id="themeText">تغییر تم (حالت روز)</span>
                     </button>
@@ -897,16 +972,14 @@
         </div>
     </header>
 
-    <!-- مدال تاریخچه به‌روزرسانی‌ها (Changelog) -->
+    <!-- مدال تاریخچه به‌روزرسانی‌ها -->
     <div id="changelogModal" class="modal">
         <div class="modal-content">
             <h3 style="color: var(--accent-cyan);">📜 تاریخچه به‌روزرسانی‌ها (Changelog)</h3>
             <ul class="changelog-list">
-                <li><strong>نسخه V 0.9:</strong> اضافه شدن تاریخچه به‌روزرسانی، سیستم تغییر تم (روز/شب)، افکت RGB سفارشی روی ارتباط با ما و حذف بخش سرور از پنل.</li>
+                <li><strong>نسخه V 0.9:</strong> اضافه شدن نوار متحرک بی‌نهایت «مشتریان ما» با آرم‌های اختصاصی، به‌روزرسانی وضعیت پروژه‌ها و پنل کاربری.</li>
                 <li><strong>نسخه V 0.8:</strong> ورود مستقیم به پنل، اضافه شدن وضعیت تحویل پروژه و بخش راهنمای ساخت حساب کاربری.</li>
                 <li><strong>نسخه V 0.6:</strong> جدا کردن دیتابیس به فایل `db.js`، اضافه شدن نوار پیشرفت پروژه (۱ تا ۱۰۰٪) و بخش سوالات متداول.</li>
-                <li><strong>نسخه V 0.5:</strong> سیستم Rate Limiting (ضد رفرش ۴۰ ثانیه‌ای)، فیلد تله بات (Honeypot) و محافظت در برابر Clickjacking.</li>
-                <li><strong>نسخه V 0.1 تا V 0.4:</strong> پیاده‌سازی ساختار اولیه نئونی، بخش پروژه‌ها، فرم ثبت سفارش تلگرامی و پنل کاربری تستی.</li>
             </ul>
             <button class="close-modal-btn" onclick="closeAllModals()">بستن</button>
         </div>
@@ -970,7 +1043,6 @@
                     <strong id="userDomainText" style="font-size: 1.3rem; color: var(--accent-cyan);">---</strong>
                 </div>
 
-                <!-- مدت زمان تحویل پروژه -->
                 <div class="dash-card-rect">
                     <span style="font-size: 0.9rem; color: var(--text-muted);">⏱️ وضعیت / زمان تحویل:</span>
                     <strong id="userDeliveryTime" style="font-size: 0.95rem; color: var(--accent-cyan);">---</strong>
@@ -981,7 +1053,7 @@
                     <strong id="userPriceText" style="font-size: 1rem;">---</strong>
                 </div>
 
-                <div class="dash-card-rgb">
+                <div class="dash-card-rgb" id="statusCardBox">
                     <span style="font-size: 0.9rem; color: var(--text-muted);">📊 وضعیت پرداخت:</span>
                     <span id="userStatusText" class="status-paid">---</span>
                 </div>
@@ -1032,6 +1104,27 @@
                 </div>
             </div>
         </section>
+
+        <!-- بخش مشتریان ما (نوار متحرک بی‌نهایت با آرم‌های بدون پس‌زمینه) -->
+        <div class="clients-ticker-section reveal">
+            <div class="ticker-title">مشتریان ما</div>
+            <div class="ticker-container">
+                <div class="ticker-track">
+                    <!-- گروه اول آرم‌ها -->
+                    <div class="client-logo-item"><img src="https://i.ibb.co/3s6p46r/image-638baf.jpg" alt="Client 1"></div>
+                    <div class="client-logo-item"><img src="https://i.ibb.co/bF9c118/image-b0aa5c.jpg" alt="Client 2"></div>
+                    <div class="client-logo-item"><img src="https://i.ibb.co/3Wq175x/image-3cd7a8.jpg" alt="Client 3"></div>
+                    <!-- تکرار برای حرکت بی‌نهایت (حلقه پشت سر هم) -->
+                    <div class="client-logo-item"><img src="https://i.ibb.co/3s6p46r/image-638baf.jpg" alt="Client 1"></div>
+                    <div class="client-logo-item"><img src="https://i.ibb.co/bF9c118/image-b0aa5c.jpg" alt="Client 2"></div>
+                    <div class="client-logo-item"><img src="https://i.ibb.co/3Wq175x/image-3cd7a8.jpg" alt="Client 3"></div>
+                    <!-- تکرار مجدد برای نرمی حرکت روی مانیتورهای بزرگ -->
+                    <div class="client-logo-item"><img src="https://i.ibb.co/3s6p46r/image-638baf.jpg" alt="Client 1"></div>
+                    <div class="client-logo-item"><img src="https://i.ibb.co/bF9c118/image-b0aa5c.jpg" alt="Client 2"></div>
+                    <div class="client-logo-item"><img src="https://i.ibb.co/3Wq175x/image-3cd7a8.jpg" alt="Client 3"></div>
+                </div>
+            </div>
+        </div>
 
         <section id="projects" class="reveal">
             <h2 class="section-title">پروژه‌های من</h2>
@@ -1210,7 +1303,6 @@
             });
         }
 
-        // بارگذاری تم ذخیره شده کاربر
         window.addEventListener("DOMContentLoaded", function() {
             if (localStorage.getItem('mobin_theme') === 'light') {
                 document.body.classList.add('light-theme');
@@ -1220,7 +1312,6 @@
             }
         });
 
-        // سیستم تغییر تم (روز / شب)
         function toggleTheme() {
             document.body.classList.toggle('light-theme');
             const isLight = document.body.classList.contains('light-theme');
@@ -1241,15 +1332,10 @@
             }
         }
 
-        // افکت کادر RGB برای بخش ارتباط با ما
         function highlightContact() {
             const footerArea = document.getElementById('contactHighlightArea');
             footerArea.classList.add('rgb-highlight');
-            
-            // هدایت نرم به فوتر
             document.getElementById('contact-footer').scrollIntoView({ behavior: 'smooth' });
-
-            // حذف افکت پس از ۵ ثانیه
             setTimeout(() => {
                 footerArea.classList.remove('rgb-highlight');
             }, 5000);
@@ -1332,7 +1418,7 @@
 
             const fallbackDatabase = {
                 "mobin.gorjizadeh": { name: "مبین", pass: "mobin1130", domain: "mobin.cam", url: "https://mobin.cam", price: "۱۵,۰۰۰,۰۰۰ تومان", status: "پرداخت شده (تایید شده)", statusColor: "#00ff64", deliveryTime: "تحویل شده", progress: 100 },
-                "am.gorji": { name: "امین", pass: "amin4275", domain: "ثبت نشده (❌)", url: "#", price: "توافقی ", status: "پرداخت نشده", statusColor: "#ff4d4d", deliveryTime: "♾️ روز", progress: 1 }
+                "am.gorji": { name: "امین", pass: "amin4275", domain: "در حال ساخت 🚧", url: "#", price: "توافقی / در انتظار تعیین", status: "در انتظار پرداخت", statusColor: "#f97316", deliveryTime: "۱۵ روز", progress: 21 }
             };
 
             const activeDB = (typeof clientDatabase !== 'undefined') ? clientDatabase : fallbackDatabase;
@@ -1348,6 +1434,10 @@
                 const statusEl = document.getElementById('userStatusText');
                 statusEl.textContent = userData.status;
                 statusEl.style.color = userData.statusColor;
+
+                // تنظیم رنگ حاشیه کارت وضعیت پرداخت برای امین (نارنجی)
+                const statusBox = document.getElementById('statusCardBox');
+                statusBox.style.borderColor = userData.statusColor;
 
                 document.getElementById('userSiteLink').href = userData.url;
 
