@@ -19,7 +19,7 @@ const clientDatabase = {
         price: "11 ملیون",
         status: "در انتظار پرداخت",
         statusColor: "#f97316", // رنگ نارنجی
-        deliveryTime: "۱۵ روز",
-        progress: 21 // درصد پیشرفت ۲۱٪
+        deliveryTime: "اماده تحویل،درانتظار پرداخت",
+        progress: 99 // درصد پیشرفت ۲۱٪
     }
 };
