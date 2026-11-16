@@ -14,12 +14,12 @@ const clientDatabase = {
     "am.gorji": {
         name: "امین",
         pass: "amin4275",
-        domain: "در حال ساخت 🚧",
-        url: "#",
+        domain: "دامین شخصی",
+        url: "https://mobingorjizadeh3-eng.github.io/tarlanacer/",
         price: "11 ملیون",
         status: "در انتظار پرداخت",
         statusColor: "#f97316", // رنگ نارنجی
         deliveryTime: "اماده تحویل،درانتظار پرداخت",
-        progress: 99 // درصد پیشرفت ۲۱٪
+        progress: 100 // درصد پیشرفت ۲۱٪
     }
 };
