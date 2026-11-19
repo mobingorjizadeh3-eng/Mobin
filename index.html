@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مبین گرجی‌زاده | توسعه‌دهنده وب و برنامه‌نویس</title>
+
+    <!-- آیکون سایت برای مرورگر و نتایج گوگل -->
+    <link rel="icon" type="image/png" sizes="48x48" href="https://i.ibb.co/HLnXsMC4/42-AD0339-0-BE1-4820-82-D3-8-ADA29278-CCD.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://i.ibb.co/HLnXsMC4/42-AD0339-0-BE1-4820-82-D3-8-ADA29278-CCD.png">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/HLnXsMC4/42-AD0339-0-BE1-4820-82-D3-8-ADA29278-CCD.png">
+
     <!-- فونت وزیرمتن -->
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <!-- آیکون‌ها FontAwesome -->
@@ -376,7 +382,6 @@
             box-shadow: 0 0 15px var(--accent-pink);
         }
 
-        /* بخش مشتریان ما (کوچک، مینیمال و زیر پروژه‌ها) */
         .clients-ticker-section {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -502,7 +507,7 @@
         .status-inactive {
             background: rgba(255, 0, 0, 0.15);
             color: #ff4d4d;
-            border: 1px solid rgba(255, 0, 0, 0.4);
+            border: 1px solid rgba(255, 0, 127, 0.4);
             box-shadow: 0 0 8px rgba(255, 0, 0, 0.2);
         }
 
@@ -913,7 +918,6 @@
             .panel-btn { padding: 6px 10px; font-size: 0.8rem; }
         }
     </style>
-    <!-- اتصال به فایل دیتابیس خارجی -->
     <script src="db.js"></script>
 </head>
 <body>
@@ -923,7 +927,6 @@
         <p>شما به دلیل رفرش زیاد تا <span id="countdown">30</span> ثانیه بلاک شدید.</p>
     </div>
 
-    <!-- هدر سایت -->
     <header>
         <div class="header-right">
             <a href="#" class="logo-area">
@@ -970,20 +973,18 @@
         </div>
     </header>
 
-    <!-- مدال تاریخچه به‌روزرسانی‌ها -->
     <div id="changelogModal" class="modal">
         <div class="modal-content">
             <h3 style="color: var(--accent-cyan);">📜 تاریخچه به‌روزرسانی‌ها (Changelog)</h3>
             <ul class="changelog-list">
-                <li><strong>نسخه V 0.9:</strong> به‌روزرسانی آرم‌های مشتریان با لینک‌های جدید و بهینه‌سازی بخش نمایشی.</li>
+                <li><strong>نسخه V 0.9.1:</strong> اضافه شدن آیکون سایت (Favicon) اختصاصی برای نمایش در مرورگر و نتایج جستجوی گوگل.</li>
+                <li><strong>نسخه V 0.9:</strong> به‌روزرسانی آرم‌های مشتریان و بهینه‌سازی بخش نمایشی.</li>
                 <li><strong>نسخه V 0.8:</strong> ورود مستقیم به پنل، وضعیت تحویل پروژه و راهنمای ساخت حساب کاربری.</li>
-                <li><strong>نسخه V 0.6:</strong> جدا کردن دیتابیس به فایل `db.js` و نوار پیشرفت پروژه.</li>
             </ul>
             <button class="close-modal-btn" onclick="closeAllModals()">بستن</button>
         </div>
     </div>
 
-    <!-- مدال سوالات متداول -->
     <div id="faqModal" class="modal">
         <div class="modal-content">
             <h3 style="color: var(--accent-cyan);">❓ سوالات متداول</h3>
@@ -992,7 +993,6 @@
         </div>
     </div>
 
-    <!-- مدال راهنمای ساخت حساب کاربری -->
     <div id="createAccountModal" class="modal">
         <div class="modal-content">
             <h3 style="color: var(--accent-cyan);">📝 ساخت حساب کاربری</h3>
@@ -1003,7 +1003,6 @@
         </div>
     </div>
 
-    <!-- مدال لاگین امن -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <h3>🔐 ورود به پنل کاربری</h3>
@@ -1029,7 +1028,6 @@
         </div>
     </div>
 
-    <!-- مدال داشبورد اختصاصی -->
     <div id="dashboardModal" class="modal">
         <div class="modal-content" style="max-width: 450px;">
             <h3 style="color: var(--accent-cyan);">⚡ پنل اختصاصی مشتری</h3>
@@ -1056,7 +1054,6 @@
                     <span id="userStatusText" class="status-paid">---</span>
                 </div>
 
-                <!-- نوار پیشرفت پروژه -->
                 <div class="dash-card-rect" style="flex-direction: column; align-items: flex-start; gap: 8px;">
                     <div style="display: flex; justify-content: space-between; width: 100%;">
                         <span style="font-size: 0.9rem; color: var(--text-muted);">📈 پیشرفت پروژه:</span>
@@ -1140,23 +1137,16 @@
             </div>
         </section>
 
-        <!-- بخش مشتریان ما (با ۲ لوگوی جدید و جای خالی برای سومی) -->
         <div class="clients-ticker-section reveal">
             <div class="ticker-title">مشتریان ما</div>
             <div class="ticker-container">
                 <div class="ticker-track">
-                    <!-- لوگوی اول -->
-                    <div class="client-logo-item"><img src="https://i.ibb.co/HTSPNRb2/IMG-4916.jpg" alt="Client 1"></div>
-                    <!-- لوگوی دوم -->
-                    <div class="client-logo-item"><img src="https://i.ibb.co/ych0qfsh/IMG-4917.jpg" alt="Client 2"></div>
-                    <!-- جای خالی برای لوگوی سوم (به‌زودی) -->
-                    <div class="client-logo-item"><img src="https://i.ibb.co/J8KMmC7/Untitled-2.jpg" alt="Client 3"></div>
-                    
-                    <!-- تکرار برای حرکت بی‌نهایت حلقه -->
                     <div class="client-logo-item"><img src="https://i.ibb.co/HTSPNRb2/IMG-4916.jpg" alt="Client 1"></div>
                     <div class="client-logo-item"><img src="https://i.ibb.co/ych0qfsh/IMG-4917.jpg" alt="Client 2"></div>
                     <div class="client-logo-item" style="color: var(--text-muted); font-size: 0.75rem; font-style: italic;">به‌زودی...</div>
-
+                    <div class="client-logo-item"><img src="https://i.ibb.co/HTSPNRb2/IMG-4916.jpg" alt="Client 1"></div>
+                    <div class="client-logo-item"><img src="https://i.ibb.co/ych0qfsh/IMG-4917.jpg" alt="Client 2"></div>
+                    <div class="client-logo-item" style="color: var(--text-muted); font-size: 0.75rem; font-style: italic;">به‌زودی...</div>
                     <div class="client-logo-item"><img src="https://i.ibb.co/HTSPNRb2/IMG-4916.jpg" alt="Client 1"></div>
                     <div class="client-logo-item"><img src="https://i.ibb.co/ych0qfsh/IMG-4917.jpg" alt="Client 2"></div>
                     <div class="client-logo-item" style="color: var(--text-muted); font-size: 0.75rem; font-style: italic;">به‌زودی...</div>
@@ -1232,7 +1222,6 @@
 
     </div>
 
-    <!-- فوتر و شبکه‌های اجتماعی -->
     <footer id="contact-footer">
         <div class="container">
             <div id="contactHighlightArea" style="display: inline-block; padding: 5px; transition: 0.5s;">
@@ -1251,11 +1240,10 @@
             <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 10px;">
                 تمامی حقوق محفوظ است | توسعه داده شده با ❤️ توسط مبین گرجی‌زاده
             </p>
-            <div class="version-tag">V 0.9 &nbsp;&copy; Mobin Gorjizadeh</div>
+            <div class="version-tag">V 0.9.1 &nbsp;&copy; Mobin Gorjizadeh</div>
         </div>
     </footer>
 
-    <!-- اسکریپت‌ها -->
     <script>
         if (window.self !== window.top) {
             window.top.location = window.self.location;
