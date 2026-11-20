@@ -14,9 +14,9 @@ const clientDatabase = {
     "am.gorji": {
         name: "امین",
         pass: "amin4275",
-        domain: "دامین شخصی",
+        domain: "?!?!",
         url: "https://mobingorjizadeh3-eng.github.io/tarlanacer/",
-        price: "11 ملیون",
+        price: " تخفیف خورده 8 ملیون",
         status: "در انتظار پرداخت",
         statusColor: "#f97316", // رنگ نارنجی
         deliveryTime: "اماده تحویل،درانتظار پرداخت",
